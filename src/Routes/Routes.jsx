@@ -1,0 +1,19 @@
+import { createBrowserRouter } from "react-router";
+import MainLayout from "../Layout/MainLayout/MainLayout";
+import Home from "../Pages/MainPages/Home/Home";
+import PrivacyPolicy from "../Components/FooterMenu/PrivacyPolicy/PrivacyPolicy";
+
+export const router = createBrowserRouter([{
+    path: "/",
+    Component: MainLayout,
+    children: [
+        {
+            index: true,
+            Component: Home
+        },
+        {
+            path: '/privacypolicy',
+            Component: PrivacyPolicy
+        }
+    ]
+}])
