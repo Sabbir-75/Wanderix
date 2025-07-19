@@ -6,6 +6,8 @@ import TermsAndConditions from "../Components/FooterMenu/TermsAndConditions/Term
 import PublicAPI from "../Components/FooterMenu/PublicAPI/PublicAPI";
 import Documentation from "../Components/FooterMenu/Documentation/Documentation";
 import Guides from "../Components/FooterMenu/Guides/Guides";
+import Login from "../Pages/AuthenticationPages/Login/Login";
+import Signup from "../Pages/AuthenticationPages/Signup/Signup";
 
 export const router = createBrowserRouter([{
     path: "/",
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([{
         {
             path: '/guides',
             Component: Guides
+        },
+        {
+            path: '/login',
+            Component: Login
+        },
+        {
+            path: '/signup',
+            Component: Signup
         },
     ]
 }])

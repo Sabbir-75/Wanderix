@@ -4,6 +4,7 @@ import FooterLogo from '../../assets/footer.png';
 import footerBg from "../../assets/istockphoto-1210609262-612x612.jpg"
 import { IoMdMail } from "react-icons/io";
 import { FiSend } from "react-icons/fi";
+import { HiEnvelope, HiPhone, HiMapPin } from "react-icons/hi2";
 
 const Footer = () => {
     return (
@@ -18,7 +19,7 @@ const Footer = () => {
 
                     <div className="join">
                         <div className='flex items-center bg-base-100 px-2 rounded-l-sm'>
-                            <IoMdMail className='mt-1 text-primary' size={20}/>
+                            <IoMdMail className='mt-1 text-primary' size={20} />
                             <input
                                 type="email"
                                 placeholder="username@site.com"
@@ -28,32 +29,43 @@ const Footer = () => {
                         <Link className="relative inline-flex items-center rounded-r-sm justify-center px-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
                             <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                             <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 from-transparent via-transparent to-gray-700"></span>
-                            <span className="relative flex items-center gap-2">Subscribe <FiSend size={14}/></span>
+                            <span className="relative flex items-center gap-2">Subscribe <FiSend size={14} /></span>
                         </Link>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 text-sm gap-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
                     <div className="space-y-3">
                         <h3 className="tracking-wide uppercase text-neutral-content">Contact Us</h3>
-                        <ul className="space-y-2">
-                            <li className='flex'>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
-                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                                </svg>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">kazisabbir4361@gmail.com</a>
+                        <ul className="space-y-3">
+                            <li className="flex items-center gap-2">
+                                <HiEnvelope className="text-primary w-5 h-5" />
+                                <a
+                                    className="border-b border-transparent hover:border-primary break-all"
+                                    rel="noopener noreferrer"
+                                    href="mailto:kazisabbir4361@gmail.com"
+                                >
+                                    kazisabbir4361@gmail.com
+                                </a>
                             </li>
-                            <li className='flex'>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                                </svg>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">01756750000</a>
+                            <li className="flex items-center gap-2">
+                                <HiPhone className="text-primary w-5 h-5" />
+                                <a
+                                    className="border-b border-transparent hover:border-primary"
+                                    rel="noopener noreferrer"
+                                    href="tel:01756750000"
+                                >
+                                    01756750000
+                                </a>
                             </li>
-                            <li className='flex'>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
-                                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
-                                </svg>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Kushtia, Daulatpur , bangladesh</a>
+                            <li className="flex items-center gap-2">
+                                <HiMapPin className="text-primary w-5 h-5" />
+                                <a
+                                    className="border-b border-transparent hover:border-primary"
+                                    rel="noopener noreferrer"
+                                    href="#"
+                                >
+                                    Kushtia, Daulatpur, Bangladesh
+                                </a>
                             </li>
                         </ul>
                     </div>
