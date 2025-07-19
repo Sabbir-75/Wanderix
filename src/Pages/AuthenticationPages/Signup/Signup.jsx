@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import profilePic from "../../../assets/image-upload-icon.png"
 import { Bounce, toast } from 'react-toastify';
 import axios from 'axios';
-import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
-import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
+// import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import GoogleLogin from '../../../Components/Share/GoogleLogin/GoogleLogin';
+import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 
 
 
@@ -15,7 +15,7 @@ import GoogleLogin from '../../../Components/Share/GoogleLogin/GoogleLogin';
 const Signup = () => {
 
     const { createAccount, profileUpdateNamePhoto } = useAuth()
-    const useUserSecure = UseAxiosRole()
+    // const useUserSecure = UseAxiosRole()
     const [namePlaceholder, setNamePlaceholder] = useState("Enter your Name")
     const [emailPlaceholder, setEmailPlaceholder] = useState("Enter your email address")
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("password")
@@ -42,22 +42,22 @@ const Signup = () => {
                 console.log(result.user);
 
                 const name = data.name
-
-                const userInfo = {
-                    email: data.email,
-                    role: "tourist",
-                    photo: image,
-                    created_at: new Date().toISOString(),
-                    last_login: new Date().toISOString()
-                }
-
-                const res = await useUserSecure.post("/users", userInfo)
-                console.log(res.data);
-
                 const updateProfile = {
                     displayName: name,
                     photoURL: image
                 }
+                // const userInfo = {
+                //     email: data.email,
+                //     role: "tourist",
+                //     photo: image,
+                //     created_at: new Date().toISOString(),
+                //     last_login: new Date().toISOString()
+                // }
+
+                // const res = await useUserSecure.post("/users", userInfo)
+                // console.log(res.data);
+
+
 
                 profileUpdateNamePhoto(updateProfile)
                     .then(() => {
@@ -74,6 +74,7 @@ const Signup = () => {
                         });
                         navigate(location.state || "/")
                         e.target.reset()
+                        console.log(updateProfile);
                     })
                     .catch((error) => {
                         console.log(error);
@@ -97,70 +98,70 @@ const Signup = () => {
     }
 
     return (
-       
-            // <Helmet>
-            //     <title>Quiknest || Signup</title>
-            // </Helmet>
-            <div className="bg-base-100 w-full shadow-[0_4px_8px_rgba(0,0,0,0.6)] max-w-[480px] mx-auto shrink-0 my-2">
-                <div className="card-body">
 
-                    <h1 className="text-4xl md:text-4xl lg:text-5xl font-extrabold mb-1">Create an Account</h1>
-                    <h1 className="text-lg font-medium">Register with Wanderix</h1>
-                    <div className='w-13 h-13 rounded-full my-5'>
-                        {
-                            image ? <img className='w-full rounded-full h-full' src={image} alt={image} /> : <img className='w-full' src={profilePic} alt={profilePic} />
-                        }
+        // <Helmet>
+        //     <title>Quiknest || Signup</title>
+        // </Helmet>
+        <div className="bg-base-100 w-full shadow-[0_4px_8px_rgba(0,0,0,0.6)] max-w-[480px] mx-auto shrink-0 my-2">
+            <div className="card-body">
 
-                    </div>
-                    <GoogleLogin></GoogleLogin>
+                <h1 className="text-4xl md:text-4xl lg:text-5xl font-extrabold mb-1">Create an Account</h1>
+                <h1 className="text-lg font-medium">Register with Wanderix</h1>
+                <div className='w-13 h-13 rounded-full my-5'>
+                    {
+                        image ? <img className='w-full rounded-full h-full' src={image} alt={image} /> : <img className='w-full' src={profilePic} alt={profilePic} />
+                    }
 
-                    <div className="flex items-center w-full my-4">
-                        <hr className="w-full text-base-content" />
-                        <p className="px-3 text-base-content">OR</p>
-                        <hr className="w-full text-base-content" />
-                    </div>
-                    <form onSubmit={handleSubmit(signupHandler)} className="fieldset">
-                        <label className="label">Your Name</label>
-                        <input type="text" {...register("name", { required: true, pattern: /^[A-Za-z]+$/ })} onFocus={() => setNamePlaceholder("")}
-                            onBlur={() => setNamePlaceholder("Enter your Name")} className="input w-full" placeholder={namePlaceholder} />
-                        {
-                            (errors.name?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Name is required</p>
-                        }
-                        {
-                            (errors.name?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Name must be capital or small letter</p>
-                        }
-
-                        <label className="label">Your photo</label>
-                        <input type="file" onChange={fileHandler} className="input w-full" placeholder="choose your photo" />
-
-                        <label className="label">Email address</label>
-                        <input type="email" {...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })} onFocus={() => setEmailPlaceholder("")}
-                            onBlur={() => setEmailPlaceholder("Enter your email address")} className="input w-full" placeholder={emailPlaceholder} />
-                        {
-                            (errors.email?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Email is required</p>
-                        }
-                        {
-                            (errors.email?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Name must be @ and .</p>
-                        }
-
-                        <label className="label">Password </label>
-                        <input type="password" {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/ })} onFocus={() => setPasswordPlaceholder("")}
-                            onBlur={() => setPasswordPlaceholder("password")} className="input w-full" placeholder={passwordPlaceholder} />
-                        {
-                            (errors.password?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Password is required</p>
-                        }
-                        {
-                            (errors.password?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Password must be capital, small letter with 6 characters</p>
-                        }
-
-                        <button type='submit' className="btn text-base font-bold text-primary-content bg-primary mt-4">Signup</button>
-                        <p className="text-sm text-center dark:text-gray-400">Already have an account ?
-                            <Link to={"/login"} rel="noopener noreferrer" className="text-blue-600 focus:underline hover:underline"> Login</Link>
-                        </p>
-                    </form>
                 </div>
+                <GoogleLogin></GoogleLogin>
+
+                <div className="flex items-center w-full my-4">
+                    <hr className="w-full text-base-content" />
+                    <p className="px-3 text-base-content">OR</p>
+                    <hr className="w-full text-base-content" />
+                </div>
+                <form onSubmit={handleSubmit(signupHandler)} className="fieldset">
+                    <label className="label">Your Name</label>
+                    <input type="text" {...register("name", { required: true, pattern: /^[A-Za-z]+$/ })} onFocus={() => setNamePlaceholder("")}
+                        onBlur={() => setNamePlaceholder("Enter your Name")} className="input w-full" placeholder={namePlaceholder} />
+                    {
+                        (errors.name?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Name is required</p>
+                    }
+                    {
+                        (errors.name?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Name must be capital or small letter</p>
+                    }
+
+                    <label className="label">Your photo</label>
+                    <input type="file" onChange={fileHandler} className="input w-full" placeholder="choose your photo" />
+
+                    <label className="label">Email address</label>
+                    <input type="email" {...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })} onFocus={() => setEmailPlaceholder("")}
+                        onBlur={() => setEmailPlaceholder("Enter your email address")} className="input w-full" placeholder={emailPlaceholder} />
+                    {
+                        (errors.email?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Email is required</p>
+                    }
+                    {
+                        (errors.email?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Name must be @ and .</p>
+                    }
+
+                    <label className="label">Password </label>
+                    <input type="password" {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/ })} onFocus={() => setPasswordPlaceholder("")}
+                        onBlur={() => setPasswordPlaceholder("password")} className="input w-full" placeholder={passwordPlaceholder} />
+                    {
+                        (errors.password?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Password is required</p>
+                    }
+                    {
+                        (errors.password?.type === 'pattern') && <p className='text-red-600 text-sm font-medium'>Password must be capital, small letter with 6 characters</p>
+                    }
+
+                    <button type='submit' className="btn text-base font-bold text-primary-content bg-primary mt-4">Signup</button>
+                    <p className="text-sm text-center dark:text-gray-400">Already have an account ?
+                        <Link to={"/login"} rel="noopener noreferrer" className="text-blue-600 focus:underline hover:underline"> Login</Link>
+                    </p>
+                </form>
             </div>
-        
+        </div>
+
     );
 };
 

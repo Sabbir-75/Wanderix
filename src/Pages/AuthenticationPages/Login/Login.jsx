@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Bounce, toast } from 'react-toastify';
@@ -7,17 +7,18 @@ import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 
 
 const Login = () => {
-    const {loginAccount} = useAuth()
+    const { loginAccount, resetPassword } = useAuth()
     const [emailPlaceholder, setEmailPlaceholder] = useState("Enter your email address")
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("password")
     const { register, handleSubmit, formState: { errors } } = useForm()
     const navigate = useNavigate()
     const location = useLocation()
+    const emailRef = useRef()
 
     const loginHandler = (data, e) => {
         e.preventDefault()
-        const { email, password } = data
-
+        const email = e.target.email.value
+        const { password } = data
         loginAccount(email, password)
             .then(() => {
                 toast.success('Login Successfully', {
@@ -48,6 +49,43 @@ const Login = () => {
                 });
             })
     }
+
+    const resetHandler = () => {
+        const email = emailRef.current.value
+        if (email) {
+            resetPassword(email)
+                .then(() => {
+                    toast.success('Password reset email sent!', {
+                        position: "top-right",
+                        autoClose: 500,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce
+                    });
+                })
+                .catch((error) => {
+                    toast.error(`${error.code}`, {
+                        position: "top-right",
+                        autoClose: 500,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce
+                    });
+                })
+        }
+        else{
+            console.log("email nai,,,,,,,!");
+        }
+
+    }
     return (
         <div className="bg-base-200 w-full border-base-content shadow-[0_4px_8px_rgba(0,0,0,0.6)] max-w-[460px] mx-auto my-2">
             <div className="card-body">
@@ -64,15 +102,13 @@ const Login = () => {
 
                     <label className="label">Email address</label>
                     <input type="email"
-                        {...register("email", { required: true })}
+                        name='email'
+                        ref={emailRef}
                         className="input w-full"
                         placeholder={emailPlaceholder}
                         onFocus={() => setEmailPlaceholder("")}
                         onBlur={() => setEmailPlaceholder("Enter your email address")}
                     />
-                    {
-                        (errors.email?.type === 'required') && <p className='text-red-600 text-sm font-medium'>Email is required</p>
-                    }
 
                     <label className="label">Password</label>
                     <input type="password" {...register("password", { required: true })} onFocus={() => setPasswordPlaceholder("")}
@@ -81,8 +117,8 @@ const Login = () => {
                         (errors.password?.type === 'required') && <p className='text-red-600 text-sm font-medium'>password is required</p>
                     }
 
-                    <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn text-base font-bold text-primary-content bg-primary mt-4">Login</button>
+                    <div><button type='button' onClick={resetHandler} className="link link-hover">Forgot password?</button></div>
+                    <button type='submit' className="btn text-base font-bold text-primary-content bg-primary mt-4">Login</button>
                     <p className="text-sm text-center text-gray-400">Don't have account ?
                         <Link to={"/signup"} rel="noopener noreferrer" className="text-blue-600 focus:underline hover:underline"> Sign up here</Link>
                     </p>
