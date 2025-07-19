@@ -64,7 +64,7 @@ const Footer = () => {
                                 <Link to={"/privacypolicy"} className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">PrivacyPolicy</Link>
                             </li>
                             <li>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Terms & Conditions</a>
+                                <Link to={"/termsandconditions"} className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Terms & Conditions</Link>
                             </li>
                         </ul>
                     </div>
@@ -72,13 +72,13 @@ const Footer = () => {
                         <h3 className="uppercase text-neutral-content">Developers</h3>
                         <ul className="space-y-1">
                             <li>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Public API</a>
+                                <Link to={"/publicAPI"} className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Public API</Link>
                             </li>
                             <li>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Documentation</a>
+                                <Link to={"/documentation"} className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Documentation</Link>
                             </li>
                             <li>
-                                <a className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Guides</a>
+                                <Link to={"/guides"} className='border-b-1 border-transparent hover:border-primary' rel="noopener noreferrer" href="#">Guides</Link>
                             </li>
                         </ul>
                     </div>

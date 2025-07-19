@@ -1,11 +1,11 @@
 import React from 'react';
 import logo1 from "../../assets/logolight.png"
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import "./Navbar.css"
 
 const Navbar = () => {
     const nav = <>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+        <li className='font-semibold  text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/"}>Home</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -16,7 +16,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="myclassName text-base-content menu-sm dropdown-content mt-3 w-52 p-2 shadow">
                         {nav}
                     </ul>
                 </div>
@@ -25,7 +25,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="myclassName text-base-content flex items-center gap-8 menu-horizontal px-1">
                     {nav}
                 </ul>
             </div>
