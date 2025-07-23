@@ -15,7 +15,7 @@ const Video = () => {
                     width="100%"
                     height="400px"
                     className="rounded-xl shadow-md"
-                    src="https://www.youtube.com/embed/puDBmnIXe_k"
+                    src="https://www.youtube.com/embed/JLjvEYMBGzQ"
                     title="Beautiful Bangladesh"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen

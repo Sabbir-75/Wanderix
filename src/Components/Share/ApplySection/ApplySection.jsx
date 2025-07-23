@@ -82,7 +82,7 @@ const ApplySection = () => {
         console.log("Submitted:", data);
     };
     return (
-        <div className="bg-white/20 backdrop-blur-lg max-w-[700px] rounded-[30px] shadow-md p-4 md:p-5">
+        <div className="bg-white/20 backdrop-blur-lg mx-auto max-w-[500px] rounded-[30px] shadow-md p-4 md:p-5">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="flex items-center justify-between">
 
@@ -97,7 +97,7 @@ const ApplySection = () => {
                         </span>
                     </button>
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-5">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-5">
 
 
                     <div className="w-full md:w-[200px]">
