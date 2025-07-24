@@ -6,6 +6,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import SectionName from "../../Share/HomeSection/HomeSection";
+import SkillBar from "./SkillBar";
+import sectionImage from "../../../assets/01.webp"
+import { Link } from "react-router";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 const TouristStorySection = () => {
 
@@ -66,37 +70,43 @@ const TouristStorySection = () => {
                 </div>
             </section>
 
+            <section className="py-20 px-4 md:px-10 bg-white flex flex-col md:flex-row gap-12 items-center">
+                {/* Left Image */}
+                <div className="w-full md:w-1/2">
+                    <img
+                        src={sectionImage}
+                        alt="Wanderix Consultants"
+                        className="rounded-t-[80px] max-h-[600px] rounded-br-[80px] w-full object-cover"
+                    />
+                </div>
 
-            <section className="py-20 px-4 md:px-10 bg-gradient-to-r from-blue-100 to-blue-200 text-center">
-                <SectionName>Choose</SectionName>
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
-                    viewport={{ once: true }}
-                    className="text-center max-w-3xl mx-auto mt-4"
-                >
-                    <h2 className="text-4xl font-extrabold text-[#00204A] mb-6">Why Choose Wanderix?</h2>
-                    <p className="text-gray-700 text-lg mb-8">
-                        Wanderix gives you everything you need to plan your dream journey. From real traveler
-                        stories to the best places, easy booking, and travel guides—your adventure starts here.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-6">
-                        <div className="bg-white rounded-xl shadow p-6 w-60">
-                            <h4 className="font-bold text-blue-600 mb-2">Verified Places</h4>
-                            <p className="text-sm text-gray-600">All destinations are rated & reviewed by our community.</p>
-                        </div>
-                        <div className="bg-white rounded-xl shadow p-6 w-60">
-                            <h4 className="font-bold text-blue-600 mb-2">Local Guides</h4>
-                            <p className="text-sm text-gray-600">Get access to guides who know every hidden gem.</p>
-                        </div>
-                        <div className="bg-white rounded-xl shadow p-6 w-60">
-                            <h4 className="font-bold text-blue-600 mb-2">Smooth Booking</h4>
-                            <p className="text-sm text-gray-600">Book your experience with just a few clicks.</p>
-                        </div>
+                {/* Right Content */}
+                <div className="w-full md:w-1/2">
+                    <div className="mb-4">
+                        <SectionName>Our Skills</SectionName>
+                        <h2 className="text-5xl font-extrabold text-[#00204A] leading-snug">
+                            We Offer You <span className="text-secondary">The Best Immigration</span> Service
+                        </h2>
                     </div>
-                </motion.div>
+                    <p className="text-gray-600 mb-8 text-base leading-relaxed">
+                        Wanderix is committed to providing expert immigration and consultancy services for those
+                        planning to travel, study or settle from Bangladesh. We make your global journey easier.
+                    </p>
+
+                    {/* Skill Bars */}
+                    <SkillBar label="Visa Consultancy" percentage={85} />
+                    <SkillBar label="Immigration Consultancy" percentage={70} />
+                    <SkillBar label="Student Consultancy" percentage={78} />
+
+                    <Link className="relative inline-flex items-center rounded-lg justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
+                            Learn More <BsArrowUpRightCircleFill />
+                        </span>
+                    </Link>
+                </div>
             </section>
+
         </>
     );
 };
