@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import SectionName from "../../Share/HomeSection/HomeSection";
@@ -19,7 +19,7 @@ const TouristStorySection = () => {
         { id: 3, title: "Rangamati Lake", image: "https://i.ibb.co/zVYVL8Jy/Kaptai-Lake-2-1024x640.jpg" },
         { id: 4, title: "Lalbagh Fort", image: "https://i.ibb.co/LX3TT8cM/the-tomb-of-bibi-pari.jpg" },
         { id: 5, title: "Ahsan Manzil", image: "https://i.ibb.co/mFNpm7HL/0e261801-dc3e-4805-99c1-b9b5c609f83238ac64b2f055f2d924-31391134405-b3a2433fa5-o.jpg" },
-        { id: 6, title: "Patenga Beach", image: "https://i.ibb.co/XZ7CRqqP/Patenga-Sea-Beach-Chittagong.jpg" },
+        { id: 6, title: "Patenga Beach", image: "https://i.ibb.co/knrPwff/64444462.jpg" },
     ];
 
     return (
@@ -35,10 +35,15 @@ const TouristStorySection = () => {
                 </div>
                 <div className="relative">
                     <Swiper
-                        modules={[Navigation]}
+                        modules={[Navigation, Autoplay]}
                         navigation={{
                             nextEl: ".swiper-button-next",
                             prevEl: ".swiper-button-prev"
+                        }}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true
                         }}
                         spaceBetween={30}
                         slidesPerView={1}
@@ -68,7 +73,7 @@ const TouristStorySection = () => {
                         <MdNavigateNext />
                     </div>
                 </div>
-            </section>
+            </section >
 
             <section className="py-20 px-4 md:px-10 bg-white flex flex-col md:flex-row gap-12 items-center">
                 {/* Left Image */}
