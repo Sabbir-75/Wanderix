@@ -23,7 +23,7 @@ const TourismGuideSection = () => {
         },
        
         {
-            id: 4,
+            id: 3,
             photo: 'https://i.ibb.co/rKZZmsyN/63b6caca34005144188450.jpg',
             title: 'Sylhet Tea Garden Trip',
             tourType: 'Nature',

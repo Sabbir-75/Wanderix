@@ -71,7 +71,7 @@ const Community = () => {
     ];
 
     return (
-        <section className="px-4 md:px-10 py-20 bg-gray-50 min-h-screen">
+        <section className="px-4 md:px-10 py-6 md:py-10 lg:py-16 bg-gray-50 min-h-screen">
 
             <div className="text-center mb-12">
                 <div className='text-center mb-4'>
