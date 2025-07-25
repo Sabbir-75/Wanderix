@@ -8,6 +8,9 @@ import Documentation from "../Components/FooterMenu/Documentation/Documentation"
 import Guides from "../Components/FooterMenu/Guides/Guides";
 import Login from "../Pages/AuthenticationPages/Login/Login";
 import Signup from "../Pages/AuthenticationPages/Signup/Signup";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Community from "../Pages/Community/Community";
+import Trips from "../Pages/Trips/Trips";
 
 export const router = createBrowserRouter([{
     path: "/",
@@ -36,6 +39,18 @@ export const router = createBrowserRouter([{
         {
             path: '/guides',
             Component: Guides
+        },
+        {
+            path: '/aboutus',
+            Component: AboutUs
+        },
+        {
+            path: '/community',
+            Component: Community
+        },
+        {
+            path: '/trips',
+            Component: Trips
         },
         {
             path: '/login',

@@ -1,9 +1,10 @@
 import React from "react";
 import { FacebookShareButton, FacebookIcon } from "react-share";
-import { NavLink, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../../Hooks/UseAuth/UseAuth";
 import SectionName from "../../Share/HomeSection/HomeSection";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 
 const stories = [
@@ -95,12 +96,12 @@ const TouristStory = () => {
             </div>
 
             <div className="text-center mt-12">
-                <NavLink to={"/allstories"} className="relative inline-flex items-center rounded-lg justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                <Link to={"/community"} className="relative inline-flex items-center rounded-lg justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
                     <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                     <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
-                        All Stories
+                        All Stories <BsArrowUpRightCircleFill />
                     </span>
-                </NavLink>
+                </Link>
             </div>
         </section>
     );
