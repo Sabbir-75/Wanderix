@@ -109,12 +109,12 @@ const TourismGuideSection = () => {
                                     <p className="text-sm text-blue-600 uppercase font-semibold">{pkg.tourType}</p>
                                     <h3 className="text-xl font-bold text-gray-800">{pkg.title}</h3>
                                     <p className="text-lg font-semibold text-green-600">৳ {pkg.price}</p>
-                                    <button type="submit" className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                                    <Link to={"/packagedetailspage"} className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
                                         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                                         <span className="relative flex text-sm lg:text-base font-semibold items-center gap-2">
                                             View Package <BsArrowUpRightCircleFill />
                                         </span>
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaGithub, FaGlobe, FaLinkedin } from 'react-icons/fa';
-import SectionName from '../../Components/Share/HomeSection/HomeSection';
+import SectionName from '../../../Components/Share/HomeSection/HomeSection';
 
 const AboutUs = () => {
     return (

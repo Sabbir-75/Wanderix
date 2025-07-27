@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import profilePic from "../../../assets/image-upload-icon.png"
 import { Bounce, toast } from 'react-toastify';
 import axios from 'axios';
-// import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
+import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import GoogleLogin from '../../../Components/Share/GoogleLogin/GoogleLogin';
 import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 
@@ -15,7 +15,7 @@ import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 const Signup = () => {
 
     const { createAccount, profileUpdateNamePhoto } = useAuth()
-    // const useUserSecure = UseAxiosRole()
+    const useUserSecure = UseAxiosRole()
     const [namePlaceholder, setNamePlaceholder] = useState("Enter your Name")
     const [emailPlaceholder, setEmailPlaceholder] = useState("Enter your email address")
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("password")
@@ -41,21 +41,22 @@ const Signup = () => {
             .then(async (result) => {
                 console.log(result.user);
 
-                const name = data.name
+                const getname = data.name
                 const updateProfile = {
-                    displayName: name,
+                    displayName: getname,
                     photoURL: image
                 }
-                // const userInfo = {
-                //     email: data.email,
-                //     role: "tourist",
-                //     photo: image,
-                //     created_at: new Date().toISOString(),
-                //     last_login: new Date().toISOString()
-                // }
+                const userInfo = {
+                    name: getname,
+                    email: data.email,
+                    role: "tourist",
+                    photo: image,
+                    created_at: new Date().toISOString(),
+                    last_login: new Date().toISOString()
+                }
 
-                // const res = await useUserSecure.post("/users", userInfo)
-                // console.log(res.data);
+                const res = await useUserSecure.post("/users", userInfo)
+                console.log(res.data);
 
 
 

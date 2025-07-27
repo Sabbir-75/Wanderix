@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router';
-import SectionName from '../../Components/Share/HomeSection/HomeSection';
+import SectionName from '../../../Components/Share/HomeSection/HomeSection';
 
 const packages = [
     {

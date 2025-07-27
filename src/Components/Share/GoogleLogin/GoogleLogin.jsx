@@ -28,10 +28,12 @@ const GoogleLogin = () => {
                     transition: Bounce
                 });
                 navigate(location.state || "/")
-                const name = result?.user?.email
+                const email = result?.user?.email
                 const photo = result?.user?.photoURL
+                const name = result?.user?.displayName
                 const userInfo = {
-                    email: name,
+                    name: name,
+                    email: email,
                     role: "tourist",
                     photo,
                     created_at: new Date().toISOString(),
