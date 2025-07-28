@@ -4,32 +4,45 @@ import 'react-tabs/style/react-tabs.css';
 import { Link } from 'react-router';
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 import SectionName from '../../Share/HomeSection/HomeSection';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 const TourismGuideSection = () => {
-    const packages = [
-        {
-            id: 1,
-            photo: 'https://i.ibb.co/rP78w1v/reasons-to-visit-Coxs-Bazar-1024x585.jpg',
-            title: 'Cox’s Bazar Beach Tour',
-            tourType: 'Beach',
-            price: 8500,
-        },
-        {
-            id: 2,
-            photo: 'https://i.ibb.co/XxwnyVrq/Things-To-Do-In-Sundarban-Cover-Photo-840x425.jpg',
-            title: 'Sundarbans Adventure',
-            tourType: 'Wildlife',
-            price: 12500,
-        },
-       
-        {
-            id: 3,
-            photo: 'https://i.ibb.co/rKZZmsyN/63b6caca34005144188450.jpg',
-            title: 'Sylhet Tea Garden Trip',
-            tourType: 'Nature',
-            price: 7000,
+    const axiosSecure = UseAxiosSecure();
+    // const packages = [
+    //     {
+    //         _id: 1,
+    //         photo: 'https://i.ibb.co/rP78w1v/reasons-to-visit-Coxs-Bazar-1024x585.jpg',
+    //         title: 'Cox’s Bazar Beach Tour',
+    //         tourType: 'Beach',
+    //         price: 8500,
+    //     },
+    //     {
+    //         _id: 2,
+    //         photo: 'https://i.ibb.co/XxwnyVrq/Things-To-Do-In-Sundarban-Cover-Photo-840x425.jpg',
+    //         title: 'Sundarbans Adventure',
+    //         tourType: 'Wildlife',
+    //         price: 12500,
+    //     },
+
+    //     {
+    //         _id: 3,
+    //         photo: 'https://i.ibb.co/rKZZmsyN/63b6caca34005144188450.jpg',
+    //         title: 'Sylhet Tea Garden Trip',
+    //         tourType: 'Nature',
+    //         price: 7000,
+    //     }
+    // ];
+
+    
+
+    const { data: packages = [] } = useQuery({
+        queryKey: ['packages'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/packages');
+            return res.data;
         }
-    ];
+    });
 
     const guides = [
         {
@@ -104,12 +117,12 @@ const TourismGuideSection = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {packages.map((pkg) => (
                             <div key={pkg._id} className="bg-white rounded-t-4xl rounded-br-4xl shadow-lg overflow-hidden border border-blue-100">
-                                <img src={pkg.photo} alt={pkg.title} className="w-full h-48 object-cover" />
+                                <img src={pkg.photos[0]} alt={pkg.photos[0]} className="w-full h-48 object-cover" />
                                 <div className="p-4">
-                                    <p className="text-sm text-blue-600 uppercase font-semibold">{pkg.tourType}</p>
+                                    <p className="text-sm text-blue-600 uppercase font-semibold">{pkg.type}</p>
                                     <h3 className="text-xl font-bold text-gray-800">{pkg.title}</h3>
                                     <p className="text-lg font-semibold text-green-600">৳ {pkg.price}</p>
-                                    <Link to={"/packagedetailspage"} className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                                    <Link to={`/packagedetailspage/${pkg._id}`} className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
                                         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                                         <span className="relative flex text-sm lg:text-base font-semibold items-center gap-2">
                                             View Package <BsArrowUpRightCircleFill />

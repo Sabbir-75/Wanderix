@@ -12,8 +12,8 @@ const UpdateStories = () => {
     const [photos, setPhotos] = useState([]);
     const [newPhotos, setNewPhotos] = useState([]);
     const [uploading, setUploading] = useState(false);
-    console.log(newPhotos);
-    const axiosSecure = UseAxiosSecure()
+
+    const axiosSecure = UseAxiosSecure();
     const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
@@ -48,6 +48,7 @@ const UpdateStories = () => {
                 console.error(`Failed to upload image ${i + 1}:`, error);
             }
         }
+
         setNewPhotos(imageUrls);
         setUploading(false);
     };
@@ -58,12 +59,29 @@ const UpdateStories = () => {
         toast.success("Photo removed successfully");
     };
 
+    const isFormChanged = (data) => {
+        return data.title !== story.title ||
+            data.description !== story.description ||
+            newPhotos.length > 0;
+    };
+
     const onSubmit = async (data) => {
-        // 1. Update title and description
-        await axiosSecure.put(`/stories/info/${id}`, {
-            title: data.title,
-            description: data.description
-        });
+        if (!isFormChanged(data)) {
+            toast.error("No changes made to update.", {
+                position: "top-right",
+                autoClose: 1500,
+                theme: "colored",
+            });
+            return;
+        }
+
+        // 1. Update title and description if changed
+        if (data.title !== story.title || data.description !== story.description) {
+            await axiosSecure.put(`/stories/info/${id}`, {
+                title: data.title,
+                description: data.description
+            });
+        }
 
         // 2. Add new photos if any
         if (newPhotos.length > 0) {
@@ -73,11 +91,6 @@ const UpdateStories = () => {
         toast.success('Story updated successfully', {
             position: "top-right",
             autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
             theme: "colored",
             transition: Bounce
         });

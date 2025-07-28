@@ -2,15 +2,18 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
+import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 
 
 const JoinAsTourGuide = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = UseAxiosSecure();
+  const {user} = useAuth()
 
   const onSubmit = async (data) => {
     const application = {
       name: data.name,
+      email: user?.email,
       photo: data.photo,
       expertise: data.expertise,
       experience: data.experience,

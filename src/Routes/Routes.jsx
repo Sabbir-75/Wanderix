@@ -20,6 +20,7 @@ import AddStories from "../Pages/DashboardPages/AddStories/AddStories";
 import ManageStories from "../Pages/DashboardPages/ManageStories/ManageStories";
 import JoinAsTourGuide from "../Pages/DashboardPages/JoinAsTourGuide/JoinAsTourGuide";
 import UpdateStories from "../Pages/DashboardPages/UpdateStories/UpdateStories";
+import AddPackage from "../Pages/DashboardPages/AddPackage/AddPackage";
 
 export const router = createBrowserRouter([
     {
@@ -63,7 +64,7 @@ export const router = createBrowserRouter([
                 Component: Trips
             },
             {
-                path: '/packagedetailspage',
+                path: '/packagedetailspage/:id',
                 Component: PackageDetailsPage
             },
             {
@@ -107,6 +108,10 @@ export const router = createBrowserRouter([
             {
                 path: "join-as-tour-guide",
                 Component: JoinAsTourGuide
+            },
+            {
+                path: "addpackage",
+                Component: AddPackage
             },
         ]
     }

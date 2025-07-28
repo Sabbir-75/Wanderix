@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router';
 import { FaHome, FaUserEdit, FaUsersCog, FaRegListAlt, FaPlusCircle, FaClipboardList, FaCogs, FaSignOutAlt } from 'react-icons/fa';
+import { TbPackages } from "react-icons/tb";
 import { MdDashboardCustomize } from 'react-icons/md';
 import { Bounce, toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
@@ -76,9 +77,9 @@ const Dashboard = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="drawer-side">
+            <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 min-h-full text-base-content space-y-2 transition-all duration-300 ease-in-out">
+                <ul className="menu p-4 w-80 min-h-full text-base-content bg-base-200 space-y-2 transition-all duration-300 ease-in-out">
                     <div className='max-w-[220px]'>
                         <img src={logo} alt={logo} />
                     </div>
@@ -127,6 +128,13 @@ const Dashboard = () => {
                             className={linkClasses("/dashboard/join-as-tour-guide")}
                         >
                             <FaUsersCog className="inline-block mr-2" /> Join as Tour Guide
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/addpackage"
+                            className={linkClasses("/dashboard/addpackage")}
+                        >
+                            <TbPackages className="inline-block mr-2" /> AddPackage
                         </Link>
                     </li>
 
