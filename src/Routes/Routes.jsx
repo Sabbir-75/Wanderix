@@ -19,6 +19,7 @@ import MyBookings from "../Pages/DashboardPages/MyBookings/MyBookings";
 import AddStories from "../Pages/DashboardPages/AddStories/AddStories";
 import ManageStories from "../Pages/DashboardPages/ManageStories/ManageStories";
 import JoinAsTourGuide from "../Pages/DashboardPages/JoinAsTourGuide/JoinAsTourGuide";
+import UpdateStories from "../Pages/DashboardPages/UpdateStories/UpdateStories";
 
 export const router = createBrowserRouter([
     {
@@ -98,6 +99,10 @@ export const router = createBrowserRouter([
             {
                 path: "manage-stories",
                 Component: ManageStories
+            },
+            {
+                path: "edit-story/:id",
+                Component: UpdateStories
             },
             {
                 path: "join-as-tour-guide",
