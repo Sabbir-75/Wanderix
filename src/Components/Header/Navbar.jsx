@@ -44,8 +44,8 @@ const Navbar = () => {
     }
     const nav = <>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/"}>Home</NavLink></li>
-        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/community"}>Community</NavLink></li>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/aboutus"}>About Us</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/community"}>Community</NavLink></li>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/trips"}>Trips</NavLink></li>
     </>
     return (
@@ -88,12 +88,12 @@ const Navbar = () => {
 
                         <div className=" text-sm font-semibold text-white border-b border-base-300 ">
                             <p className='px-2 py-1 flex gap-2.5 items-center'><FaUserAlt /> {user?.displayName} </p>
-                            
+
                         </div>
 
                         <div className=" text-sm opacity-90  border-b border-base-300">
                             <p className='px-2 py-1 flex gap-2.5 items-center'> <MdEmail />  {user?.email}</p>
-                           
+
                         </div>
 
 

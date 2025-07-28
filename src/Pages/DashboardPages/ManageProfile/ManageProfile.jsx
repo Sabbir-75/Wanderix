@@ -1,11 +1,12 @@
 // Frontend: ManageProfile.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { FaEdit } from 'react-icons/fa';
 import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import { useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const ManageProfile = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +14,8 @@ const ManageProfile = () => {
     const navigate = useNavigate();
     const { user } = useAuth()
     const useAxiosSecure = UseAxiosRole()
+
+
 
     const fetchUserByEmail = async (email) => {
         const res = await useAxiosSecure.get(`/users/${email}`);
@@ -36,10 +39,17 @@ const ManageProfile = () => {
         console.log(data);
     };
 
-
+    useEffect(() => {
+        if (userInfo?.name) {
+            toast.success(`Welcome back, ${userInfo.name}!`, {
+                position: "top-center",
+                autoClose: 3000,
+            });
+        }
+    }, [userInfo]);
     return (
         <div className="p-6 max-w-xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Welcome, {user?.name}</h2>
+            <h2 className="text-3xl font-bold mb-4">Welcome, {userInfo?.name || 'Guest'} !</h2>
             <div className="bg-white rounded-lg shadow p-6">
                 <img src={userInfo?.photo} alt="Profile" className="w-24 h-24 rounded-full mb-4" />
                 <p><strong>Name:</strong> {userInfo?.name}</p>
