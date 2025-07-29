@@ -3,6 +3,7 @@ import { FaUser, FaEnvelope, FaGlobe } from "react-icons/fa";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 const bangladeshDistricts = [
     "Bagerhat",
@@ -87,64 +88,72 @@ const ApplySection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-br from-blue-200/30 via-white/20 to-orange-200/40 backdrop-blur-md mx-auto max-w-[500px] rounded-[30px] shadow-xl p-4 md:p-5"
+            className="bg-gradient-to-br from-blue-200/30 via-white/20 to-orange-200/40 backdrop-blur-md mx-auto max-w-[500px] rounded-[30px] shadow-xl p-3 sm:p-4 md:p-5"
         >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="flex items-center justify-between">
-                    <motion.h2
-                        className="text-xl md:text-2xl font-bold w-full md:w-auto"
-                        animate={{ color: ["#0098FF", "#FFA704"] }}
-                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                    >
-                        Destination
-                    </motion.h2>
-                    <button
-                        type="submit"
-                        className="relative inline-flex items-center rounded-full justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group"
-                    >
-                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
-                        <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
-                            Apply Now <BsArrowUpRightCircleFill />
-                        </span>
-                    </button>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
+                <div className="flex justify-between items-center">
+                    <div>
+                        <motion.h2
+                            className="text-base sm:text-lg md:text-xl font-bold w-full md:w-auto"
+                            animate={{ color: ["#0098FF", "#FFA704"] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                        >
+                            Destination
+                        </motion.h2>
+                    </div>
+
+                    <div>
+                        <Link className="relative inline-flex items-center rounded-lg justify-center px-3 py-2   overflow-hidden font-mono font-medium tracking-tighter text-white bg-secondary group">
+                            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                            <span className="relative flex text-xs md:text-base lg:text-lg font-semibold items-center gap-2">
+                                Apply Now <BsArrowUpRightCircleFill />
+                            </span>
+                        </Link>
+                    </div>
+
+
                 </div>
 
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-5">
+                <div className="flex items-center justify-between gap-2 sm:gap-4">
                     {/* Name Input */}
                     <div className="w-full md:w-[200px]">
-                        <div className="flex items-center gap-2 px-4 py-2.5 bg-white border rounded-full">
-                            <FaUser className="text-blue-500" />
+                        <div className="flex items-center gap-2 px-3 py-2 sm:py-2.5 bg-white border rounded-full">
+                            <FaUser className="text-blue-500 text-xs sm:text-sm" />
                             <input
                                 type="text"
-                                placeholder="Enter Name"
+                                placeholder="Name"
                                 {...register("name", { required: "Name is required" })}
-                                className="outline-none w-full text-sm"
+                                className="outline-none w-full text-xs sm:text-sm"
                             />
                         </div>
-                        {errors.name && <p className="text-red-500 text-xs mt-1 ml-2">{errors.name.message}</p>}
+                        {errors.name && (
+                            <p className="text-red-500 text-xs mt-1 ml-2">{errors.name.message}</p>
+                        )}
                     </div>
 
                     {/* Email Input */}
                     <div className="w-full md:w-[200px]">
-                        <div className="flex items-center gap-2 px-4 py-2.5 bg-white border rounded-full">
-                            <FaEnvelope className="text-blue-500" />
+                        <div className="flex items-center gap-2 px-3 py-2 sm:py-2.5 bg-white border rounded-full">
+                            <FaEnvelope className="text-blue-500 text-xs sm:text-sm" />
                             <input
                                 type="email"
-                                placeholder="Enter Email"
+                                placeholder="Email"
                                 {...register("email", { required: "Email is required" })}
-                                className="outline-none w-full text-sm"
+                                className="outline-none w-full text-xs sm:text-sm"
                             />
                         </div>
-                        {errors.email && <p className="text-red-500 text-xs mt-1 ml-2">{errors.email.message}</p>}
+                        {errors.email && (
+                            <p className="text-red-500 text-xs mt-1 ml-2">{errors.email.message}</p>
+                        )}
                     </div>
 
                     {/* District Dropdown */}
                     <div className="w-full md:w-[200px]">
-                        <div className="flex items-center gap-2 px-4 py-2.5 bg-white border rounded-full">
-                            <FaGlobe className="text-blue-500" />
+                        <div className="flex items-center gap-2 px-3 py-2 sm:py-2.5 bg-white border rounded-full">
+                            <FaGlobe className="text-blue-500 text-xs sm:text-sm" />
                             <select
                                 {...register("district", { required: "Please select a district" })}
-                                className="outline-none w-full bg-white text-sm"
+                                className="outline-none w-full bg-white text-xs sm:text-sm"
                             >
                                 <option value="">Districts</option>
                                 {bangladeshDistricts.map((dis, i) => (
@@ -154,11 +163,15 @@ const ApplySection = () => {
                                 ))}
                             </select>
                         </div>
-                        {errors.district && <p className="text-red-500 text-xs mt-1 ml-2">{errors.district.message}</p>}
+                        {errors.district && (
+                            <p className="text-red-500 text-xs mt-1 ml-2">{errors.district.message}</p>
+                        )}
                     </div>
                 </div>
             </form>
         </motion.div>
+
+
     );
 };
 

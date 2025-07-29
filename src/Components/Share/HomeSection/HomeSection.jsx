@@ -3,7 +3,7 @@ import { BsFillSignIntersectionFill } from "react-icons/bs";
 
 const SectionName = ({ children }) => {
     return (
-        <button className="relative inline-flex items-center text-lg font-bold px-4 py-2 text-white rounded-full overflow-hidden group">
+        <button className="relative inline-flex items-center text-sm md:text-base lg:text-lg font-bold px-2 md:px-4 py-1 md:py-2 text-white rounded-full overflow-hidden group">
 
 
             <span className="absolute inset-0 bg-primary" />
@@ -15,7 +15,7 @@ const SectionName = ({ children }) => {
                 }}
             />
             <span className="relative z-10 flex items-center space-x-2">
-                <span className="flex justify-center tracking-[4px] items-center gap-1.5"><BsFillSignIntersectionFill size={18} /> {children}</span>
+                <span className="flex justify-center tracking-[2px] md:tracking-[4px] items-center gap-1.5"><BsFillSignIntersectionFill size={18} /> {children}</span>
             </span>
         </button>
     );
