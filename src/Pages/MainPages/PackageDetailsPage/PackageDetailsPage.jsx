@@ -43,8 +43,8 @@ const PackageDetailsPage = () => {
     const formattedPhotos = Array.isArray(packageData?.photos)
         ? packageData.photos.map((url) => ({
             src: url,
-            width: 4,
-            height: 3,
+            width: 5,
+            height: 4,
         }))
         : [];
 
