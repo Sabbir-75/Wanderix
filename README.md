@@ -1,6 +1,6 @@
 # 🌍 Wanderix - Travel & Tour Management Platform
 
-**Live Site:** https://wanderix.vercel.app
+**Live Site:** https://wanderix.netlify.app/
 
 
 ## ✨ Project Overview
