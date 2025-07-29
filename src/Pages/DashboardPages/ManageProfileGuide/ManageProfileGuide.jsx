@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
 import { FaEdit } from 'react-icons/fa';
 import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
-const ManageProfile = () => {
+const ManageProfileGuide = () => {
     const { register, handleSubmit, reset } = useForm();
-    const navigate = useNavigate();
     const { user } = useAuth();
     const useAxiosSecure = UseAxiosRole();
 
@@ -21,7 +19,7 @@ const ManageProfile = () => {
     const { data: userInfo, refetch } = useQuery({
         queryKey: ['user-info', user?.email],
         queryFn: () => fetchUserByEmail(user?.email),
-        enabled: !!user?.email
+        enabled: !!user?.email,
     });
 
     const onSubmit = async (data) => {
@@ -50,23 +48,19 @@ const ManageProfile = () => {
 
     return (
         <div className="p-6 max-w-xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Welcome, {userInfo?.name || 'Guest'}!</h2>
+            <h2 className="text-3xl font-bold mb-4">Welcome, {userInfo?.name || 'Guest'} !</h2>
+
             <div className="bg-white rounded-lg shadow p-6">
                 <img src={userInfo?.photo} alt="Profile" className="w-24 h-24 rounded-full mb-4" />
                 <p><strong>Name:</strong> {userInfo?.name}</p>
                 <p><strong>Email:</strong> {userInfo?.email}</p>
                 <p><strong>Role:</strong> {userInfo?.role}</p>
-                <div className='flex justify-between flex-wrap gap-2'>
-                    {/* Open modal button */}
+
+                <div className='flex justify-between'>
+                    {/* DaisyUI Modal trigger */}
                     <label htmlFor="edit_modal" className="btn btn-primary mt-4 flex items-center gap-2 cursor-pointer">
                         <FaEdit /> Edit Profile
                     </label>
-                    <button
-                        className="btn btn-secondary mt-4 ml-0"
-                        onClick={() => navigate('/dashboard/join-as-tour-guide')}
-                    >
-                        Apply for Tour Guide
-                    </button>
                 </div>
             </div>
 
@@ -80,17 +74,19 @@ const ManageProfile = () => {
                         <input {...register('photo')} className="input input-bordered w-full" placeholder="Photo URL" />
                         <input className="input input-bordered w-full" value={userInfo?.email} disabled readOnly />
                         <input className="input input-bordered w-full" value={userInfo?.role} disabled readOnly />
+
                         <div className="flex gap-3 justify-end mt-4">
+                            {/* Close modal button */}
                             <label htmlFor="edit_modal" className="btn btn-ghost">Cancel</label>
                             <button type="submit" className="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
-                {/* Click outside to close */}
+                {/* Click outside modal to close */}
                 <label className="modal-backdrop" htmlFor="edit_modal"></label>
             </div>
         </div>
     );
 };
 
-export default ManageProfile;
+export default ManageProfileGuide;

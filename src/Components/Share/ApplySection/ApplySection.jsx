@@ -1,7 +1,8 @@
 import React from "react";
-import { FaUser, FaEnvelope, FaGlobe, FaPassport } from "react-icons/fa";
-import { BsArrowUpRightCircle, BsArrowUpRightCircleFill } from "react-icons/bs";
+import { FaUser, FaEnvelope, FaGlobe } from "react-icons/fa";
+import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 
 const bangladeshDistricts = [
     "Bagerhat",
@@ -82,24 +83,34 @@ const ApplySection = () => {
         console.log("Submitted:", data);
     };
     return (
-        <div className="bg-white/20 backdrop-blur-lg mx-auto max-w-[500px] rounded-[30px] shadow-md p-4 md:p-5">
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gradient-to-br from-blue-200/30 via-white/20 to-orange-200/40 backdrop-blur-md mx-auto max-w-[500px] rounded-[30px] shadow-xl p-4 md:p-5"
+        >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="flex items-center justify-between">
-
-
-                    <h2 className="text-xl md:text-2xl font-bold text-base-200 w-full md:w-auto">
+                    <motion.h2
+                        className="text-xl md:text-2xl font-bold w-full md:w-auto"
+                        animate={{ color: ["#0098FF", "#FFA704"] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                    >
                         Destination
-                    </h2>
-                    <button type="submit" className="relative inline-flex items-center rounded-full justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                    </motion.h2>
+                    <button
+                        type="submit"
+                        className="relative inline-flex items-center rounded-full justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group"
+                    >
                         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
                             Apply Now <BsArrowUpRightCircleFill />
                         </span>
                     </button>
                 </div>
+
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-5">
-
-
+                    {/* Name Input */}
                     <div className="w-full md:w-[200px]">
                         <div className="flex items-center gap-2 px-4 py-2.5 bg-white border rounded-full">
                             <FaUser className="text-blue-500" />
@@ -137,7 +148,9 @@ const ApplySection = () => {
                             >
                                 <option value="">Districts</option>
                                 {bangladeshDistricts.map((dis, i) => (
-                                    <option key={i} value={dis}>{dis}</option>
+                                    <option key={i} value={dis}>
+                                        {dis}
+                                    </option>
                                 ))}
                             </select>
                         </div>
@@ -145,7 +158,7 @@ const ApplySection = () => {
                     </div>
                 </div>
             </form>
-        </div>
+        </motion.div>
     );
 };
 

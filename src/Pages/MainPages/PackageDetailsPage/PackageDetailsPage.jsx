@@ -15,44 +15,34 @@ const guides = [
     {
         _id: 1,
         name: 'Tanvir Rahman',
+        guideEmail: "mdsabbirhossain9200@gmail.com",
         expertise: 'Hill Tracking',
         experience: 5,
         photo: 'https://i.ibb.co/XZcwXjJ5/istockphoto-1171169127-612x612.jpg',
     },
     {
         _id: 2,
-        name: 'Mitu Akter',
-        expertise: 'Heritage Sites',
-        experience: 4,
-        photo: 'https://i.ibb.co/My7zmKYR/young-man-with-beard-round-glasses-273609-6647.jpg',
-    },
-    {
-        _id: 3,
         name: 'Rafiq Uddin',
+        guideEmail: "mdsabbirhossain9200@gmail.com",
         expertise: 'Beach Travel',
         experience: 3,
         photo: 'https://i.ibb.co/gbX8TzxF/images.jpg',
     },
     {
-        _id: 4,
+        _id: 3,
         name: 'Nusrat Jahan',
+        guideEmail: "mdsabbirhossain9200@gmail.com",
         expertise: 'Eco Tours',
         experience: 6,
         photo: 'https://i.ibb.co/ds12RnsP/young-woman-office-52137-33650.jpg',
     },
     {
-        _id: 5,
+        _id: 4,
         name: 'Shuvo Mallick',
+        guideEmail: "mdsabbirhossain9200@gmail.com",
         expertise: 'Sundarban Safari',
         experience: 7,
         photo: 'https://i.ibb.co/LzX0mBnh/istockphoto-1503232125-612x612.jpg',
-    },
-    {
-        _id: 6,
-        name: 'Farzana Noor',
-        expertise: 'Cultural Tours',
-        experience: 4,
-        photo: 'https://i.ibb.co/Z6BxNWng/istockphoto-2074399566-612x612.jpg',
     }
 ];
 
@@ -118,7 +108,6 @@ const PackageDetailsPage = () => {
     if (isLoading) return <p className="text-center py-10">Loading package details...</p>;
     if (!packageData) return <p className="text-center py-10 text-red-500">Package not found</p>;
 
-    console.log(packageData);
 
     const formattedPhotos = Array.isArray(packageData?.photos)
         ? packageData.photos.map((url) => ({
@@ -137,6 +126,8 @@ const PackageDetailsPage = () => {
             return toast.error("Please select a tour date.");
         }
 
+        const guideEmails = guides.find(guid => guid.name === data.guideName)
+
         const bookingInfo = {
             ...data,
             status: "pending",
@@ -144,6 +135,7 @@ const PackageDetailsPage = () => {
             tourDate: selectedDate,
             touristImage: user.photoURL,
             packageName: packageData.title,
+            guideEmail: guideEmails.guideEmail,
         };
 
         try {

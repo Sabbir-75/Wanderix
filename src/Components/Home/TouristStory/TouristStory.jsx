@@ -5,48 +5,51 @@ import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../../Hooks/UseAuth/UseAuth";
 import SectionName from "../../Share/HomeSection/HomeSection";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import UseAxiosSecure from "../../../Hooks/UseAxiosSecure/UseAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
-const stories = [
-    {
-        id: 1,
-        title: "Sundarbans Adventure",
-        location: "Khulna",
-        user: "Sabbir",
-        description: "Exploring the world's largest mangrove forest was a dream come true!",
-        image: "https://i.ibb.co/gLmHsjjN/2742993.webp",
-        url: "https://wanderix.com/story/1"
-    },
-    {
-        id: 2,
-        title: "Srimangal Tea Trails",
-        location: "Khulna",
-        user: "Lubna",
-        description: "The aroma of tea leaves and peaceful nature was unforgettable.",
-        image: "https://i.ibb.co/zTz9VGWn/6-Sylhet.webp",
-        url: "https://wanderix.com/story/2"
-    },
-    {
-        id: 3,
-        title: "Cox's Bazar Sunset",
-        location: "Cox's Bazar",
-        user: "jerin",
-        description: "The sunset on the longest sea beach in the world is magical!",
-        image: "https://i.ibb.co/GfFDQDBx/best-place-to-visit-in-russia.jpg",
-        url: "https://wanderix.com/story/3"
-    },
-    {
-        id: 4,
-        title: "Bandarban Hills",
-        location: "Bandarban",
-        user: "Tuba",
-        description: "The mountains whispered peace into my soul.",
-        image: "https://i.ibb.co/h1LjvGbm/Bangladesh-3.jpg",
-        url: "https://wanderix.com/story/4"
-    },
-];
+// const stories = [
+//     {
+//         id: 1,
+//         title: "Sundarbans Adventure",
+//         location: "Khulna",
+//         user: "Sabbir",
+//         description: "Exploring the world's largest mangrove forest was a dream come true!",
+//         image: "https://i.ibb.co/gLmHsjjN/2742993.webp",
+//         url: "https://wanderix.com/story/1"
+//     },
+//     {
+//         id: 2,
+//         title: "Srimangal Tea Trails",
+//         location: "Khulna",
+//         user: "Lubna",
+//         description: "The aroma of tea leaves and peaceful nature was unforgettable.",
+//         image: "https://i.ibb.co/zTz9VGWn/6-Sylhet.webp",
+//         url: "https://wanderix.com/story/2"
+//     },
+//     {
+//         id: 3,
+//         title: "Cox's Bazar Sunset",
+//         location: "Cox's Bazar",
+//         user: "jerin",
+//         description: "The sunset on the longest sea beach in the world is magical!",
+//         image: "https://i.ibb.co/GfFDQDBx/best-place-to-visit-in-russia.jpg",
+//         url: "https://wanderix.com/story/3"
+//     },
+//     {
+//         id: 4,
+//         title: "Bandarban Hills",
+//         location: "Bandarban",
+//         user: "Tuba",
+//         description: "The mountains whispered peace into my soul.",
+//         image: "https://i.ibb.co/h1LjvGbm/Bangladesh-3.jpg",
+//         url: "https://wanderix.com/story/4"
+//     },
+// ];
 
 const TouristStory = () => {
+    const axiosSecure = UseAxiosSecure()
     const navigate = useNavigate();
     const { user } = useAuth()
     const handleShare = () => {
@@ -54,6 +57,14 @@ const TouristStory = () => {
             navigate("/login");
         }
     };
+
+    const { data: stories = [] } = useQuery({
+        queryKey: ['candidates'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/stories');
+            return res.data;
+        }
+    });
 
     return (
         <section className="py-16 px-4 md:px-10 bg-gradient-to-br from-[#f0f9ff] to-[#e0f2fe]">
@@ -68,13 +79,13 @@ const TouristStory = () => {
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 ">
                 {stories.map((story) => (
                     <div key={story.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
-                        <img src={story.image} alt={story.title} className="w-full h-48 object-cover" />
+                        <img src={story.images[0]} alt={story.images[0]} className="w-full h-48 object-cover" />
                         <div className="p-5 space-y-3">
                             <h3 className="text-xl font-bold text-gray-800">{story.title}</h3>
                             <p className="text-sm text-gray-500">📍 {story.location}</p>
                             <p className="text-gray-700 text-sm">{story.description}</p>
                             <div className="flex items-center gap-2 text-sm text-blue-600">
-                                <FaUserCircle /> <span>{story.user}</span>
+                                <FaUserCircle /> <span>{story?.email}</span>
                             </div>
                             <div>
                                 {user ? (

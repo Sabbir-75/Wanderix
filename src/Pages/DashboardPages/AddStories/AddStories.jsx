@@ -54,6 +54,7 @@ const AddStories = () => {
             email: user?.email,
             description: data.description,
             images,
+            url: data.shareurl,
             createdAt: new Date()
         };
         console.log(storyData);
@@ -103,6 +104,18 @@ const AddStories = () => {
                     />
                     {errors.title && (
                         <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+                    )}
+                </div>
+                {/* url Field */}
+                <div>
+                    <input
+                        {...register('shareurl', { required: 'Title is required' })}
+                        className="input input-bordered w-full"
+                        placeholder="url"
+                        type='url'
+                    />
+                    {errors.shareurl && (
+                        <p className="text-red-500 text-sm mt-1">{errors.shareurl.message}</p>
                     )}
                 </div>
 

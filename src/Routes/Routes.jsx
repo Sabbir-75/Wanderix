@@ -21,6 +21,11 @@ import ManageStories from "../Pages/DashboardPages/ManageStories/ManageStories";
 import JoinAsTourGuide from "../Pages/DashboardPages/JoinAsTourGuide/JoinAsTourGuide";
 import UpdateStories from "../Pages/DashboardPages/UpdateStories/UpdateStories";
 import AddPackage from "../Pages/DashboardPages/AddPackage/AddPackage";
+import ManageProfileGuide from "../Pages/DashboardPages/ManageProfileGuide/ManageProfileGuide";
+import MyAssignedTours from "../Pages/DashboardPages/MyAssignedTours/MyAssignedTours";
+import ManageUsers from "../Pages/DashboardPages/ManageUsers/ManageUsers";
+import ManageCandidates from "../Pages/DashboardPages/ManageCandidates/ManageCandidates";
+import ManageProfileAdmin from "../Pages/DashboardPages/ManageProfileAdmin/ManageProfileAdmin";
 
 export const router = createBrowserRouter([
     {
@@ -90,8 +95,28 @@ export const router = createBrowserRouter([
                 Component: ManageProfile
             },
             {
+                path: "manage-profile-guide",
+                Component: ManageProfileGuide 
+            },
+            {
+                path: "manage-profile-admin",
+                Component: ManageProfileAdmin
+            },
+            {
+                path: "manage-users",
+                Component: ManageUsers 
+            },
+            {
+                path: "manage-candidates",
+                Component: ManageCandidates
+            },
+            {
                 path: "my-bookings",
                 Component: MyBookings
+            },
+            {
+                path: "my-assigned-tours",
+                Component: MyAssignedTours
             },
             {
                 path: "add-stories",

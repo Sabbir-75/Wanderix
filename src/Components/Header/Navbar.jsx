@@ -105,16 +105,6 @@ const Navbar = () => {
                                 <FiLayout /> Dashboard
                             </NavLink>
                         </li>
-
-
-                        <li>
-                            <NavLink
-                                to="/offers"
-                                className="hover:bg-secondary rounded-md px-2 py-1 flex items-center gap-2 duration-150"
-                            >
-                                <IoMegaphone /> Offers
-                            </NavLink>
-                        </li>
                         <li>
                             <button
                                 onClick={logoutHandler}

@@ -7,6 +7,9 @@ import { Bounce, toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import logo from "../../assets/logolight.png"
 import { useAuth } from '../../Hooks/UseAuth/UseAuth';
+import { FaUsers } from "react-icons/fa6";
+import { MdAssignment } from "react-icons/md";
+import { IoMailUnread } from "react-icons/io5";
 
 const Dashboard = () => {
     const location = useLocation()
@@ -137,6 +140,52 @@ const Dashboard = () => {
                             <TbPackages className="inline-block mr-2" /> AddPackage
                         </Link>
                     </li>
+
+                    <li>
+                        <Link to="/dashboard/manage-profile-guide"
+                            className={linkClasses("/dashboard/manage-profile-guide")}
+                        >
+                            <FaUserEdit className="inline-block mr-2" /> Manage Profile
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/my-assigned-tours"
+                            className={linkClasses("/dashboard/my-assigned-tours")}
+                        >
+                            <MdAssignment className="inline-block mr-2" /> My Assigned Tours
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/manage-users"
+                            className={linkClasses("/dashboard/manage-users")}
+                        >
+                            <FaUsers className="inline-block mr-2" /> Manage Users
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/manage-candidates"
+                            className={linkClasses("/dashboard/manage-candidates")}
+                        >
+                            <IoMailUnread className="inline-block mr-2" /> Manage Candidates
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/manage-profile-admin"
+                            className={linkClasses("/dashboard/manage-profile-admin")}
+                        >
+                            <FaUserEdit className="inline-block mr-2" /> Manage Profile
+                        </Link>
+                    </li>
+
+
+
+
+
+
+
+
+
+
 
                     <div className="divider mt-6 text-primary">Others</div>
 
