@@ -12,7 +12,7 @@ const TourismGuideSection = () => {
     const { data: candidates = [] } = useQuery({
         queryKey: ['guides'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/random-guides`);
+            const res = await axiosSecure.get(`/tourGuides/random-guides`);
             return res.data;
         }
     });

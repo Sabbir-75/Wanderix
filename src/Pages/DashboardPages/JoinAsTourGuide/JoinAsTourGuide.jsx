@@ -17,6 +17,7 @@ const JoinAsTourGuide = () => {
       photo: data.photo,
       expertise: data.expertise,
       experience: data.experience,
+      role: "applicants",
       title: data.title,
       reason: data.reason,
       cvLink: data.cvLink,

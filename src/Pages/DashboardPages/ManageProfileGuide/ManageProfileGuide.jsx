@@ -5,11 +5,12 @@ import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 
 const ManageProfileGuide = () => {
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();
-    const useAxiosSecure = UseAxiosRole();
+    const useAxiosSecure = UseAxiosSecure();
 
     const fetchUserByEmail = async (email) => {
         const res = await useAxiosSecure.get(`/users/${email}`);

@@ -11,7 +11,7 @@ const GuideProfile = () => {
     const useSecure = UseAxiosSecure()
 
     useEffect(() => {
-        useSecure.get(`/users/details/${id}`)
+        useSecure.get(`/tourGuides/details/${id}`)
             .then(res => {
                 setGuide(res.data);
                 setLoading(false);
@@ -65,14 +65,6 @@ const GuideProfile = () => {
                 <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
                     <p className="text-sm text-gray-600">Experience</p>
                     <h3 className="text-lg font-semibold">{guide.experience} years</h3>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
-                    <p className="text-sm text-gray-600">Joined on</p>
-                    <h3 className="text-lg font-semibold">{new Date(guide.created_at).toLocaleDateString()}</h3>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
-                    <p className="text-sm text-gray-600">Last Login</p>
-                    <h3 className="text-lg font-semibold">{new Date(guide.last_login).toLocaleString()}</h3>
                 </div>
             </div>
 

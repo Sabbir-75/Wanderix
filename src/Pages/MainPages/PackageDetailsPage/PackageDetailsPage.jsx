@@ -19,6 +19,7 @@ const PackageDetailsPage = () => {
     const { role } = USeRole()
     const [selectedDate, setSelectedDate] = React.useState(null);
     const { id } = useParams()
+    const roleBase = "guide"
 
     const { data: packageData, isLoading } = useQuery({
         queryKey: ['singlePackage', id],
@@ -28,15 +29,14 @@ const PackageDetailsPage = () => {
             return res.data;
         }
     });
-    const { data: allGuides = [] } = useQuery({
-        queryKey: ['guidesData'],
+
+    const { data: guides = [] } = useQuery({
+        queryKey: ['guidesData', role],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users`);
+            const res = await axiosSecure.get(`/tour-guide?role=${roleBase}`);
             return res.data;
         }
     });
-
-    const guides = allGuides.filter(guid => guid.role === "guide")
 
     if (isLoading) return <p className="text-center py-10">Loading package details...</p>;
     if (!packageData) return <p className="text-center py-10 text-red-500">Package not found</p>;
