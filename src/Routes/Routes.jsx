@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/packagedetailspage/:id',
-                Component: PackageDetailsPage
+                element: <PrivateRoute><PackageDetailsPage></PackageDetailsPage></PrivateRoute>,
             },
             {
                 path: '/login',
@@ -94,7 +94,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/guide/:id',
-                Component: GuideProfile
+                element: <PrivateRoute><GuideProfile></GuideProfile></PrivateRoute>,
             },
         ]
     },
@@ -120,7 +120,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "manage-users",
-               element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
                 path: "manage-candidates",
