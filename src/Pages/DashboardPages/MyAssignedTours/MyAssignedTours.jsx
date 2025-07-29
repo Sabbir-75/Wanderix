@@ -1,22 +1,28 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
+import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
 
 const MyAssignedTours = () => {
     const { user } = useAuth();
     const axiosSecure = UseAxiosSecure();
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
     const [selectedBooking, setSelectedBooking] = useState(null);
 
-    const { data: assignedTours = [], refetch } = useQuery({
-        queryKey: ['assigned-tours', user?.email],
+    const { data: assignedData = {}, refetch } = useQuery({
+        queryKey: ['assigned-tours', user?.email, currentPage,itemsPerPage],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/assigned-tours/${user?.email}`);
+            const res = await axiosSecure.get(`/assigned-tours/${user?.email}?page=${currentPage}&limit=${itemsPerPage}`);
             return res.data;
         },
     });
+
+    const { assignedTours = [], total = 0 } = assignedData;
+    const totalPages = Math.ceil(total / itemsPerPage);
 
     const handleAccept = async (id) => {
         try {
@@ -57,7 +63,7 @@ const MyAssignedTours = () => {
                 <tbody>
                     {assignedTours.map((booking, index) => (
                         <tr key={booking._id}>
-                            <td>{index + 1}</td>
+                            <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                             <td>{booking.packageName}</td>
                             <td>{booking.touristName}</td>
                             <td>{booking.tourDate}</td>
@@ -82,8 +88,28 @@ const MyAssignedTours = () => {
                             </td>
                         </tr>
                     ))}
+                    {assignedTours.length === 0 && (
+                        <tr>
+                            <td colSpan="7" className="text-center py-4">No assigned tours.</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+                <div className="flex justify-center mt-6 gap-2 flex-wrap">
+                    {[...Array(totalPages).keys()].map((num) => (
+                        <button
+                            key={num}
+                            onClick={() => setCurrentPage(num + 1)}
+                            className={`btn btn-sm ${currentPage === num + 1 ? "btn-primary" : "btn-outline"}`}
+                        >
+                            {num + 1}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             {/* Confirmation Modal for Reject */}
             {selectedBooking && (

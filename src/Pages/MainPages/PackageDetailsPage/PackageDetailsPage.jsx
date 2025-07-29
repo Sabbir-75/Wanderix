@@ -11,74 +11,40 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 
-const guides = [
-    {
-        _id: 1,
-        name: 'Tanvir Rahman',
-        guideEmail: "mdsabbirhossain9200@gmail.com",
-        expertise: 'Hill Tracking',
-        experience: 5,
-        photo: 'https://i.ibb.co/XZcwXjJ5/istockphoto-1171169127-612x612.jpg',
-    },
-    {
-        _id: 2,
-        name: 'Rafiq Uddin',
-        guideEmail: "mdsabbirhossain9200@gmail.com",
-        expertise: 'Beach Travel',
-        experience: 3,
-        photo: 'https://i.ibb.co/gbX8TzxF/images.jpg',
-    },
-    {
-        _id: 3,
-        name: 'Nusrat Jahan',
-        guideEmail: "mdsabbirhossain9200@gmail.com",
-        expertise: 'Eco Tours',
-        experience: 6,
-        photo: 'https://i.ibb.co/ds12RnsP/young-woman-office-52137-33650.jpg',
-    },
-    {
-        _id: 4,
-        name: 'Shuvo Mallick',
-        guideEmail: "mdsabbirhossain9200@gmail.com",
-        expertise: 'Sundarban Safari',
-        experience: 7,
-        photo: 'https://i.ibb.co/LzX0mBnh/istockphoto-1503232125-612x612.jpg',
-    }
-];
-
-
-// const packageData = {
-//     title: "Explore Sundarbans Adventure",
-//     about: "Discover the largest mangrove forest in the world with our guided Sundarbans tour. From wildlife to scenic boat rides, it's a once-in-a-lifetime experience.",
-//     price: 8500,
-//     photos: [
-//         "https://i.ibb.co/tq1GmYf/sundarban-1.jpg",
-//         "https://i.ibb.co/QFkjPtN/sundarban-2.jpg",
-//         "https://i.ibb.co/tq1GmYf/sundarban-1.jpg",
-//         "https://i.ibb.co/QFkjPtN/sundarban-2.jpg",
-//         "https://i.ibb.co/tq1GmYf/sundarban-1.jpg",
-
-//     ],
-//     plan: [
-//         {
-//             title: "Khulna to Mongla, boat check-in",
-//             description: "Start your journey from Khulna and board the boat at Mongla. Enjoy a welcome dinner and briefing about the tour."
-//         },
-//         {
-//             title: "Explore the forest & wildlife",
-//             description: "Visit Kotka forest area, go on a guided jungle walk, and spot wildlife including deer, monkeys, and maybe a tiger!"
-//         },
-//         {
-//             title: "Visit Harbaria & return to Khulna",
-//             description: "See the Harbaria eco-tourism spot, enjoy a final boat lunch and return to Khulna in the evening."
-//         }
-//     ]
-// };
-
-
-
-
-
+// const guides = [
+//     {
+//         _id: 1,
+//         name: 'Tanvir Rahman',
+//         guideEmail: "mdsabbirhossain9200@gmail.com",
+//         expertise: 'Hill Tracking',
+//         experience: 5,
+//         photo: 'https://i.ibb.co/XZcwXjJ5/istockphoto-1171169127-612x612.jpg',
+//     },
+//     {
+//         _id: 2,
+//         name: 'Rafiq Uddin',
+//         guideEmail: "mdsabbirhossain9200@gmail.com",
+//         expertise: 'Beach Travel',
+//         experience: 3,
+//         photo: 'https://i.ibb.co/gbX8TzxF/images.jpg',
+//     },
+//     {
+//         _id: 3,
+//         name: 'Nusrat Jahan',
+//         guideEmail: "mdsabbirhossain9200@gmail.com",
+//         expertise: 'Eco Tours',
+//         experience: 6,
+//         photo: 'https://i.ibb.co/ds12RnsP/young-woman-office-52137-33650.jpg',
+//     },
+//     {
+//         _id: 4,
+//         name: 'Shuvo Mallick',
+//         guideEmail: "mdsabbirhossain9200@gmail.com",
+//         expertise: 'Sundarban Safari',
+//         experience: 7,
+//         photo: 'https://i.ibb.co/LzX0mBnh/istockphoto-1503232125-612x612.jpg',
+//     }
+// ];
 
 const PackageDetailsPage = () => {
     const { user } = useAuth()
@@ -88,19 +54,18 @@ const PackageDetailsPage = () => {
     const [selectedDate, setSelectedDate] = React.useState(null);
     const { id } = useParams()
 
-    // const { data: packageData } = useQuery({
-    //     queryKey: ['singlePackage', id],
-    //     enabled: !!id, // ensures query runs only when ID is available
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/packages/${id}`);
-    //         return res.data;
-    //     }
-    // });
     const { data: packageData, isLoading } = useQuery({
         queryKey: ['singlePackage', id],
-        enabled: !!id,
+        enabled: !!id, // ensures query runs only when ID is available
         queryFn: async () => {
             const res = await axiosSecure.get(`/packages/${id}`);
+            return res.data;
+        }
+    });
+    const { data: guides = []} = useQuery({
+        queryKey: ['guidesData'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users`);
             return res.data;
         }
     });
@@ -135,7 +100,7 @@ const PackageDetailsPage = () => {
             tourDate: selectedDate,
             touristImage: user.photoURL,
             packageName: packageData.title,
-            guideEmail: guideEmails.guideEmail,
+            guideEmail: guideEmails.email,
         };
 
         try {

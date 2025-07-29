@@ -10,11 +10,13 @@ import { useAuth } from '../../Hooks/UseAuth/UseAuth';
 import { FaUsers } from "react-icons/fa6";
 import { MdAssignment } from "react-icons/md";
 import { IoMailUnread } from "react-icons/io5";
+import USeRole from '../../Hooks/UseRole/USeRole';
 
 const Dashboard = () => {
     const location = useLocation()
     const { logoutAccount } = useAuth()
     const navigate = useNavigate()
+    const { role } = USeRole()
     const logoutHandler = () => {
         logoutAccount()
             .then(() => {
@@ -98,84 +100,102 @@ const Dashboard = () => {
                             <MdDashboardCustomize className="inline-block mr-2" /> Dashboard Home
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/dashboard/manage-profile"
-                            className={linkClasses("/dashboard/manage-profile")}
-                        >
-                            <FaUserEdit className="inline-block mr-2" /> Manage Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/my-bookings"
-                            className={linkClasses("/dashboard/my-bookings")}
-                        >
-                            <FaRegListAlt className="inline-block mr-2" /> My Bookings
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/add-stories"
-                            className={linkClasses("/dashboard/add-stories")}
-                        >
-                            <FaPlusCircle className="inline-block mr-2" /> Add Stories
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/manage-stories"
-                            className={linkClasses("/dashboard/manage-stories")}
-                        >
-                            <FaClipboardList className="inline-block mr-2" /> Manage Stories
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/join-as-tour-guide"
-                            className={linkClasses("/dashboard/join-as-tour-guide")}
-                        >
-                            <FaUsersCog className="inline-block mr-2" /> Join as Tour Guide
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/addpackage"
-                            className={linkClasses("/dashboard/addpackage")}
-                        >
-                            <TbPackages className="inline-block mr-2" /> AddPackage
-                        </Link>
-                    </li>
+                    {
+                        role === "tourist" &&
+                        <>
+                            <li>
+                                <Link to="/dashboard/manage-profile"
+                                    className={linkClasses("/dashboard/manage-profile")}
+                                >
+                                    <FaUserEdit className="inline-block mr-2" /> Manage Profile
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/my-bookings"
+                                    className={linkClasses("/dashboard/my-bookings")}
+                                >
+                                    <FaRegListAlt className="inline-block mr-2" /> My Bookings
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/join-as-tour-guide"
+                                    className={linkClasses("/dashboard/join-as-tour-guide")}
+                                >
+                                    <FaUsersCog className="inline-block mr-2" /> Join as Tour Guide
+                                </Link>
+                            </li>
+                        </>
+                    }
 
-                    <li>
-                        <Link to="/dashboard/manage-profile-guide"
-                            className={linkClasses("/dashboard/manage-profile-guide")}
-                        >
-                            <FaUserEdit className="inline-block mr-2" /> Manage Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/my-assigned-tours"
-                            className={linkClasses("/dashboard/my-assigned-tours")}
-                        >
-                            <MdAssignment className="inline-block mr-2" /> My Assigned Tours
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/manage-users"
-                            className={linkClasses("/dashboard/manage-users")}
-                        >
-                            <FaUsers className="inline-block mr-2" /> Manage Users
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/manage-candidates"
-                            className={linkClasses("/dashboard/manage-candidates")}
-                        >
-                            <IoMailUnread className="inline-block mr-2" /> Manage Candidates
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/manage-profile-admin"
-                            className={linkClasses("/dashboard/manage-profile-admin")}
-                        >
-                            <FaUserEdit className="inline-block mr-2" /> Manage Profile
-                        </Link>
-                    </li>
+                    {
+                        role === "guide" &&
+                        <>
+                            <li>
+                                <Link to="/dashboard/add-stories"
+                                    className={linkClasses("/dashboard/add-stories")}
+                                >
+                                    <FaPlusCircle className="inline-block mr-2" /> Add Stories
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/manage-stories"
+                                    className={linkClasses("/dashboard/manage-stories")}
+                                >
+                                    <FaClipboardList className="inline-block mr-2" /> Manage Stories
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/manage-profile-guide"
+                                    className={linkClasses("/dashboard/manage-profile-guide")}
+                                >
+                                    <FaUserEdit className="inline-block mr-2" /> Manage Profile
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/my-assigned-tours"
+                                    className={linkClasses("/dashboard/my-assigned-tours")}
+                                >
+                                    <MdAssignment className="inline-block mr-2" /> My Assigned Tours
+                                </Link>
+                            </li>
+                        </>
+                    }
+
+                    {
+                        role === "admin" &&
+                        <>
+                            <li>
+                                <Link to="/dashboard/manage-users"
+                                    className={linkClasses("/dashboard/manage-users")}
+                                >
+                                    <FaUsers className="inline-block mr-2" /> Manage Users
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/manage-candidates"
+                                    className={linkClasses("/dashboard/manage-candidates")}
+                                >
+                                    <IoMailUnread className="inline-block mr-2" /> Manage Candidates
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/manage-profile-admin"
+                                    className={linkClasses("/dashboard/manage-profile-admin")}
+                                >
+                                    <FaUserEdit className="inline-block mr-2" /> Manage Profile
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/dashboard/addpackage"
+                                    className={linkClasses("/dashboard/addpackage")}
+                                >
+                                    <TbPackages className="inline-block mr-2" /> AddPackage
+                                </Link>
+                            </li>
+                        </>
+                    }
+
+
 
 
 

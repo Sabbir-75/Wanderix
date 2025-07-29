@@ -223,7 +223,7 @@ const MyBookings = () => {
             setShowCongrats(true);
             const timer = setTimeout(() => {
                 setShowCongrats(false);
-            }, 4000);
+            }, 3000);
             return () => clearTimeout(timer);
         }
     }, [bookings]);

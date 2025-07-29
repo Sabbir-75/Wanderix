@@ -26,6 +26,14 @@ import MyAssignedTours from "../Pages/DashboardPages/MyAssignedTours/MyAssignedT
 import ManageUsers from "../Pages/DashboardPages/ManageUsers/ManageUsers";
 import ManageCandidates from "../Pages/DashboardPages/ManageCandidates/ManageCandidates";
 import ManageProfileAdmin from "../Pages/DashboardPages/ManageProfileAdmin/ManageProfileAdmin";
+import Forbidden from "../Pages/MainPages/Forbidden/Forbidden";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import GuideProfile from "../Pages/MainPages/GuideProfile/GuideProfile";
+import PrivateRoute from "../Context/PrivateRoute/PrivateRoute";
+import AdminRoute from "../Context/AdminRoute/AdminRoute";
+import TouristRoute from "../Context/TouristRoute/TouristRoute";
+import CommonRoute from "../Context/CommonRoute/CommonRoute";
+import GuideRoute from "../Context/GuideRoute/GuideRoute";
 
 export const router = createBrowserRouter([
     {
@@ -80,11 +88,19 @@ export const router = createBrowserRouter([
                 path: '/signup',
                 Component: Signup
             },
+            {
+                path: '/forbidden',
+                Component: Forbidden
+            },
+            {
+                path: '/guide/:id',
+                Component: GuideProfile
+            },
         ]
     },
     {
         path: "/dashboard",
-        Component: Dashboard,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 index: true,
@@ -92,52 +108,56 @@ export const router = createBrowserRouter([
             },
             {
                 path: "manage-profile",
-                Component: ManageProfile
+                element: <CommonRoute><ManageProfile></ManageProfile></CommonRoute>
             },
             {
                 path: "manage-profile-guide",
-                Component: ManageProfileGuide 
+                element: <CommonRoute><ManageProfileGuide></ManageProfileGuide></CommonRoute>
             },
             {
                 path: "manage-profile-admin",
-                Component: ManageProfileAdmin
+                element: <AdminRoute><ManageProfileAdmin></ManageProfileAdmin></AdminRoute>
             },
             {
                 path: "manage-users",
-                Component: ManageUsers 
+               element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
                 path: "manage-candidates",
-                Component: ManageCandidates
+                element: <AdminRoute><ManageCandidates></ManageCandidates></AdminRoute>
             },
             {
                 path: "my-bookings",
-                Component: MyBookings
+                element: <TouristRoute><MyBookings></MyBookings></TouristRoute>
             },
             {
                 path: "my-assigned-tours",
-                Component: MyAssignedTours
+                element: <GuideRoute><MyAssignedTours></MyAssignedTours></GuideRoute>
             },
             {
                 path: "add-stories",
-                Component: AddStories
+                element: <CommonRoute><AddStories></AddStories></CommonRoute>
             },
             {
                 path: "manage-stories",
-                Component: ManageStories
+                element: <CommonRoute><ManageStories></ManageStories></CommonRoute>
             },
             {
                 path: "edit-story/:id",
-                Component: UpdateStories
+                element: <CommonRoute><UpdateStories></UpdateStories></CommonRoute>
             },
             {
                 path: "join-as-tour-guide",
-                Component: JoinAsTourGuide
+                element: <TouristRoute><JoinAsTourGuide></JoinAsTourGuide></TouristRoute>
             },
             {
                 path: "addpackage",
-                Component: AddPackage
+                element: <AdminRoute><AddPackage></AddPackage></AdminRoute>
             },
         ]
+    },
+    {
+        path: "*",
+        Component: ErrorPage
     }
 ])

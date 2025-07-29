@@ -24,8 +24,6 @@ const TourismGuideSection = () => {
         }
     });
 
-    console.log(candidates);
-    console.log(packages);
 
     return (
         <section className="py-16 px-4 md:px-10 bg-accent to-white">
@@ -88,12 +86,12 @@ const TourismGuideSection = () => {
                                 <h3 className="text-lg font-bold text-gray-800">{guide.name}</h3>
                                 <p className="text-gray-600">Expertise: {guide.expertise}</p>
                                 <p className="text-gray-600">Experience: {guide.experience} years</p>
-                                <button type="submit" className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
+                                <Link to={`/guide/${guide._id}`} type="submit" className="relative inline-flex items-center rounded-full justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
                                     <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
                                     <span className="relative flex text-sm lg:text-base font-semibold items-center gap-2">
                                         View Profile <BsArrowUpRightCircleFill />
                                     </span>
-                                </button>
+                                </Link>
                             </div>
                         ))}
                     </div>

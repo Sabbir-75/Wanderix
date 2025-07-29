@@ -3,15 +3,15 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { FaEdit } from 'react-icons/fa';
 import { useAuth } from '../../../Hooks/UseAuth/UseAuth';
-import UseAxiosRole from '../../../Hooks/UseAxiosRole/UseAxiosRole';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure/UseAxiosSecure';
 
 const ManageProfile = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
     const { user } = useAuth();
-    const useAxiosSecure = UseAxiosRole();
+    const useAxiosSecure = UseAxiosSecure();
 
     const fetchUserByEmail = async (email) => {
         const res = await useAxiosSecure.get(`/users/${email}`);
