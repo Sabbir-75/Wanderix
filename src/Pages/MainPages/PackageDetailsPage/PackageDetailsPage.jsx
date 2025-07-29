@@ -9,12 +9,14 @@ import SectionName from "../../../Components/Share/HomeSection/HomeSection";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import USeRole from "../../../Hooks/UseRole/USeRole";
 
 const PackageDetailsPage = () => {
     const { user } = useAuth()
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const axiosSecure = UseAxiosSecure();
+    const { role } = USeRole()
     const [selectedDate, setSelectedDate] = React.useState(null);
     const { id } = useParams()
 
@@ -26,7 +28,7 @@ const PackageDetailsPage = () => {
             return res.data;
         }
     });
-    const { data: allGuides = []} = useQuery({
+    const { data: allGuides = [] } = useQuery({
         queryKey: ['guidesData'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users`);
@@ -191,8 +193,20 @@ const PackageDetailsPage = () => {
                             </option>
                         ))}
                     </select>
-                    <button type="submit" className="btn btn-primary mt-4">
+                    {/* <button type="submit" className="btn btn-primary mt-4">
                         Book Now
+                    </button> */}
+                    <button
+                        type="submit"
+                        className="btn btn-primary mt-4"
+                        disabled={role === 'admin' || role === 'guide'}
+                    >
+                        {
+                            role === 'admin' || role === 'guide'
+                                ? 'Only tourists can book packages'
+                                : 'Book Now'
+                        }
+
                     </button>
                 </form>
             </section>
