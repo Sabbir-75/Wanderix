@@ -10,42 +10,6 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-
-// const guides = [
-//     {
-//         _id: 1,
-//         name: 'Tanvir Rahman',
-//         guideEmail: "mdsabbirhossain9200@gmail.com",
-//         expertise: 'Hill Tracking',
-//         experience: 5,
-//         photo: 'https://i.ibb.co/XZcwXjJ5/istockphoto-1171169127-612x612.jpg',
-//     },
-//     {
-//         _id: 2,
-//         name: 'Rafiq Uddin',
-//         guideEmail: "mdsabbirhossain9200@gmail.com",
-//         expertise: 'Beach Travel',
-//         experience: 3,
-//         photo: 'https://i.ibb.co/gbX8TzxF/images.jpg',
-//     },
-//     {
-//         _id: 3,
-//         name: 'Nusrat Jahan',
-//         guideEmail: "mdsabbirhossain9200@gmail.com",
-//         expertise: 'Eco Tours',
-//         experience: 6,
-//         photo: 'https://i.ibb.co/ds12RnsP/young-woman-office-52137-33650.jpg',
-//     },
-//     {
-//         _id: 4,
-//         name: 'Shuvo Mallick',
-//         guideEmail: "mdsabbirhossain9200@gmail.com",
-//         expertise: 'Sundarban Safari',
-//         experience: 7,
-//         photo: 'https://i.ibb.co/LzX0mBnh/istockphoto-1503232125-612x612.jpg',
-//     }
-// ];
-
 const PackageDetailsPage = () => {
     const { user } = useAuth()
     const { register, handleSubmit } = useForm();
@@ -62,13 +26,15 @@ const PackageDetailsPage = () => {
             return res.data;
         }
     });
-    const { data: guides = []} = useQuery({
+    const { data: allGuides = []} = useQuery({
         queryKey: ['guidesData'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users`);
             return res.data;
         }
     });
+
+    const guides = allGuides.filter(guid => guid.role === "guide")
 
     if (isLoading) return <p className="text-center py-10">Loading package details...</p>;
     if (!packageData) return <p className="text-center py-10 text-red-500">Package not found</p>;

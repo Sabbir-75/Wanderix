@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo1 from "../../assets/logolight.png"
+import logo2 from "../../assets/Untitled_design-removebg-preview.png"
 import { Link, NavLink, useNavigate } from 'react-router';
 import { FiLogOut, FiLogIn, FiLayout } from "react-icons/fi";
 import { IoMegaphone } from "react-icons/io5";
@@ -10,7 +11,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const Navbar = () => {
-    const { user, logoutAccount } = useAuth()
+    const { user, logoutAccount, setThemeChanger, themeChanger } = useAuth()
     const navigate = useNavigate()
     const logoutHandler = () => {
         logoutAccount()
@@ -42,6 +43,21 @@ const Navbar = () => {
                 });
             })
     }
+
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem("theme") || "light"
+    })
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+        setThemeChanger(theme)
+    }, [theme, setThemeChanger])
+
+    const handleToggle = (e) => {
+        setTheme(e.target.checked ? "dark" : "light")
+        setThemeChanger(theme)
+    }
     const nav = <>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/"}>Home</NavLink></li>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/aboutus"}>About Us</NavLink></li>
@@ -61,9 +77,14 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <Link className="">
-                    <img className='max-w-[110px] md:max-w-[220px] h-full' src={logo1} alt={logo1} />
-                </Link>
+                {
+                    themeChanger === "light" ? <Link className="">
+                        <img className='max-w-[110px] md:max-w-[220px] h-full' src={logo1} alt={logo1} />
+                    </Link> : <Link className="">
+                        <img className='max-w-[110px] md:max-w-[220px] h-full' src={logo2} alt={logo2} />
+                    </Link>
+                }
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="myclassName text-base-content flex items-center gap-8 menu-horizontal px-1">
@@ -71,60 +92,76 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-2">
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0}>
-                        <img
-                            src={user?.photoURL}
-                            alt="Profile"
-                            className="cursor-pointer w-[28px] h-[28px] md:w-[35px] md:h-[35px] rounded-full object-cover border-2 border-primary"
-                        />
-                    </div>
+                <label className="toggle text-base-content">
+                    <input type="checkbox" onChange={handleToggle} checked={theme === "dark"} />
+                    <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>
 
-                    <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu max-w-90 bg-neutral text-neutral-content rounded-2xl shadow-lg space-y-1"
+                    <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></g></svg>
+
+                </label>
+                {
+                    user &&
+                    <>
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0}>
+                                <img
+                                    src={user?.photoURL}
+                                    alt="Profile"
+                                    className="cursor-pointer w-[28px] h-[28px] md:w-[35px] md:h-[35px] rounded-full object-cover border-2 border-primary"
+                                />
+                            </div>
+
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content z-[1] menu max-w-90 bg-neutral text-neutral-content rounded-2xl shadow-lg space-y-1"
+                            >
+
+
+                                <div className=" text-sm font-semibold text-white border-b border-base-300 ">
+                                    <p className='px-2 py-1 flex gap-2.5 items-center'><FaUserAlt /> {user?.displayName} </p>
+
+                                </div>
+
+                                <div className=" text-sm opacity-90  border-b border-base-300">
+                                    <p className='px-2 py-1 flex gap-2.5 items-center'> <MdEmail />  {user?.email}</p>
+
+                                </div>
+
+
+                                <li>
+                                    <NavLink
+                                        to="/dashboard"
+                                        className="hover:bg-secondary rounded-md px-2 py-1 flex items-center gap-2 duration-150"
+                                    >
+                                        <FiLayout /> Dashboard
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={logoutHandler}
+                                        className="hover:bg-red-500 bg-red-600 rounded-md px-2 py-1 flex items-center gap-2 text-white duration-150 w-full"
+                                    >
+                                        <FiLogOut /> Logout
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </>
+                }
+
+                {
+                    !user && <Link
+                        to="/login"
+                        className="relative inline-flex items-center rounded-sm justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group"
                     >
+                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="absolute inset-0 w-full h-full rounded-lg opacity-30 from-transparent via-transparent to-gray-700"></span>
+                        <span className="relative flex text-sm md:text-base font-semibold items-center gap-2">
+                            <FiLogIn size={14} /> Login
+                        </span>
+                    </Link>
+                }
 
-
-                        <div className=" text-sm font-semibold text-white border-b border-base-300 ">
-                            <p className='px-2 py-1 flex gap-2.5 items-center'><FaUserAlt /> {user?.displayName} </p>
-
-                        </div>
-
-                        <div className=" text-sm opacity-90  border-b border-base-300">
-                            <p className='px-2 py-1 flex gap-2.5 items-center'> <MdEmail />  {user?.email}</p>
-
-                        </div>
-
-
-                        <li>
-                            <NavLink
-                                to="/dashboard"
-                                className="hover:bg-secondary rounded-md px-2 py-1 flex items-center gap-2 duration-150"
-                            >
-                                <FiLayout /> Dashboard
-                            </NavLink>
-                        </li>
-                        <li>
-                            <button
-                                onClick={logoutHandler}
-                                className="hover:bg-red-500 bg-red-600 rounded-md px-2 py-1 flex items-center gap-2 text-white duration-150 w-full"
-                            >
-                                <FiLogOut /> Logout
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <Link
-                    to="/login"
-                    className="relative inline-flex items-center rounded-sm justify-center px-2 md:px-3 py-1 md:py-2 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group"
-                >
-                    <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
-                    <span className="absolute inset-0 w-full h-full rounded-lg opacity-30 from-transparent via-transparent to-gray-700"></span>
-                    <span className="relative flex text-sm md:text-base font-semibold items-center gap-2">
-                        <FiLogIn size={14} /> Login
-                    </span>
-                </Link>
 
             </div>
         </div>
