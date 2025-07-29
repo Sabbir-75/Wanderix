@@ -128,7 +128,7 @@ const Dashboard = () => {
                     }
 
                     {
-                        role === "guide" &&
+                        (role === "tourist" || role === "guide") &&
                         <>
                             <li>
                                 <Link to="/dashboard/add-stories"
@@ -144,6 +144,12 @@ const Dashboard = () => {
                                     <FaClipboardList className="inline-block mr-2" /> Manage Stories
                                 </Link>
                             </li>
+                        </>
+                    }
+
+                    {
+                        role === "guide" &&
+                        <>
                             <li>
                                 <Link to="/dashboard/manage-profile-guide"
                                     className={linkClasses("/dashboard/manage-profile-guide")}
