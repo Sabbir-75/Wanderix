@@ -24,7 +24,7 @@ const AboutUs = () => {
                     <div className="mt-6 md:mt-0">
                         <h2 className="text-2xl font-bold">Md Sabbir Hossain</h2>
                         <p className="text-gray-700 mt-2">
-                            I'm a passionate  MERN Stack Web Developer from Bangladesh. I built this Wanderix website as a tourism management system for Bangladesh, aiming to help travelers discover and explore beautiful destinations easily.
+                            I'm a passionate  Frontend Web Developer from Bangladesh. I built this Wanderix website as a tourism management system for Bangladesh, aiming to help travelers discover and explore beautiful destinations easily.
                         </p>
                         <p className="text-gray-700 mt-2">
                             So far, I have created <span className="font-semibold text-primary">7+ full-stack projects</span> including e-commerce, booking, and admin dashboards.

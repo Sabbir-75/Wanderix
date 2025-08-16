@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo1 from "../../assets/logolight.png"
-import logo2 from "../../assets/Untitled_design-removebg-preview.png"
+import logo1 from "../../assets/Untitled_design-removebg-preview.png"
 import { Link, NavLink, useNavigate } from 'react-router';
 import { FiLogOut, FiLogIn, FiLayout } from "react-icons/fi";
 import { IoMegaphone } from "react-icons/io5";
@@ -11,8 +10,9 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const Navbar = () => {
-    const { user, logoutAccount, setThemeChanger, themeChanger } = useAuth()
+    const { user, logoutAccount, setThemeChanger } = useAuth()
     const navigate = useNavigate()
+     const [isFixed, setIsFixed] = useState(false);
     const logoutHandler = () => {
         logoutAccount()
             .then(() => {
@@ -58,14 +58,31 @@ const Navbar = () => {
         setTheme(e.target.checked ? "dark" : "light")
         setThemeChanger(theme)
     }
+    useEffect(() => {
+        const handleScroll = () => {
+            const navbarHeight = document.getElementById("navbarId").offsetHeight;
+            if (window.scrollY > navbarHeight) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     const nav = <>
-        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/"}>Home</NavLink></li>
-        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/aboutus"}>About Us</NavLink></li>
-        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/community"}>Community</NavLink></li>
-        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100 py-1 duration-200`} to={"/trips"}>Trips</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/"}>Home</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/aboutus"}>About Us</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/community"}>Community</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/trips"}>Trips</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div id="navbarId" className={`navbar bg-base-100 shadow-sm z-50 transition-all duration-500 ease-in-out sticky ${
+        isFixed
+          ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-base-100/60 translate-y-0'
+          : 'relative -top-30'
+      }`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -77,14 +94,9 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                {
-                    themeChanger === "light" ? <Link className="">
-                        <img className='max-w-[110px] md:max-w-[220px] h-full' src={logo1} alt={logo1} />
-                    </Link> : <Link className="">
-                        <img className='max-w-[110px] md:max-w-[220px] h-full' src={logo2} alt={logo2} />
-                    </Link>
-                }
-
+                <Link className="max-w-[190px]">
+                    <img className=' w-full md:max-w-[220px] h-full' src={logo1} alt={logo1} />
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="myclassName text-base-content flex items-center gap-8 menu-horizontal px-1">
