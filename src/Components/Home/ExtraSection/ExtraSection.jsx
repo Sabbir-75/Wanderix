@@ -25,7 +25,7 @@ const TouristStorySection = () => {
     return (
         <>
 
-            <section className="py-20 px-4 md:px-10 bg-white text-center">
+            <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 text-center">
                 <SectionName>Destinations</SectionName>
                 <div className="text-center mt-4 mb-12">
                     <h2 className="text-4xl font-extrabold text-[#00204A] mb-4">Featured Destinations</h2>
@@ -75,7 +75,7 @@ const TouristStorySection = () => {
                 </div>
             </section >
 
-            <section className="py-20 px-4 md:px-10 bg-white flex flex-col md:flex-row gap-12 items-center">
+            <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 bg-white flex flex-col md:flex-row gap-12 items-center">
                 {/* Left Image */}
                 <div className="w-full md:w-1/2">
                     <img

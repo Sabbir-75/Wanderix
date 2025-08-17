@@ -8,46 +8,6 @@ import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import UseAxiosSecure from "../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-
-// const stories = [
-//     {
-//         id: 1,
-//         title: "Sundarbans Adventure",
-//         location: "Khulna",
-//         user: "Sabbir",
-//         description: "Exploring the world's largest mangrove forest was a dream come true!",
-//         image: "https://i.ibb.co/gLmHsjjN/2742993.webp",
-//         url: "https://wanderix.com/story/1"
-//     },
-//     {
-//         id: 2,
-//         title: "Srimangal Tea Trails",
-//         location: "Khulna",
-//         user: "Lubna",
-//         description: "The aroma of tea leaves and peaceful nature was unforgettable.",
-//         image: "https://i.ibb.co/zTz9VGWn/6-Sylhet.webp",
-//         url: "https://wanderix.com/story/2"
-//     },
-//     {
-//         id: 3,
-//         title: "Cox's Bazar Sunset",
-//         location: "Cox's Bazar",
-//         user: "jerin",
-//         description: "The sunset on the longest sea beach in the world is magical!",
-//         image: "https://i.ibb.co/GfFDQDBx/best-place-to-visit-in-russia.jpg",
-//         url: "https://wanderix.com/story/3"
-//     },
-//     {
-//         id: 4,
-//         title: "Bandarban Hills",
-//         location: "Bandarban",
-//         user: "Tuba",
-//         description: "The mountains whispered peace into my soul.",
-//         image: "https://i.ibb.co/h1LjvGbm/Bangladesh-3.jpg",
-//         url: "https://wanderix.com/story/4"
-//     },
-// ];
-
 const TouristStory = () => {
     const axiosSecure = UseAxiosSecure()
     const navigate = useNavigate();
@@ -67,7 +27,7 @@ const TouristStory = () => {
     });
 
     return (
-        <section className="py-16 px-4 md:px-10 bg-gradient-to-br from-[#f0f9ff] to-[#e0f2fe]">
+        <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 bg-gradient-to-br">
             <div className="text-center mb-12">
                 <SectionName>Stories</SectionName>
                 <h2 className="text-5xl font-bold mt-2 mb-3">Tourist <span className='text-secondary'> Story</span></h2>
@@ -76,7 +36,7 @@ const TouristStory = () => {
                 </p>
             </div>
 
-            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 ">
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {stories.map((story) => (
                     <div key={story.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
                         <img src={story.images[0]} alt={story.images[0]} className="w-full h-48 object-cover" />

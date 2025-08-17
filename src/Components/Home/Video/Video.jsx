@@ -3,7 +3,7 @@ import SectionName from '../../Share/HomeSection/HomeSection';
 
 const Video = () => {
     return (
-        <section className="overview-section py-16 bg-gray-100 text-center">
+        <section className="overview-section max-w-7xl mx-auto py-12 md:py-16 lg:py-24 text-center">
             <SectionName>Overview</SectionName>
             <h2 className="text-5xl font-bold mt-2 mb-3">Welcome <span className='text-secondary'>to</span> Wanderix</h2>
             <p className="max-w-2xl mx-auto mb-8 text-gray-700">

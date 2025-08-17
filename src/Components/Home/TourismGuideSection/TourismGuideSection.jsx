@@ -26,7 +26,7 @@ const TourismGuideSection = () => {
 
 
     return (
-        <section className="py-16 px-4 md:px-10 bg-accent to-white">
+        <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12">
             <div className='text-center mb-3'>
                 <SectionName>Guide</SectionName>
             </div>
