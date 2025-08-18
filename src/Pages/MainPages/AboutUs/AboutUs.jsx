@@ -4,7 +4,7 @@ import SectionName from '../../../Components/Share/HomeSection/HomeSection';
 
 const AboutUs = () => {
     return (
-        <section className="py-6 md:py-10 lg:py-16 px-4 md:px-20 bg-gradient-to-b from-white via-blue-50 to-white text-base-content">
+        <section className="py-12 md:py-16 lg:py-24 px-4 md:px-20 text-base-content">
             <div className="max-w-5xl mx-auto">
                 <div className='text-center mb-4'>
                     <SectionName>About Us</SectionName>
