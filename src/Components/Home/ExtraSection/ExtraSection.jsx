@@ -28,8 +28,8 @@ const TouristStorySection = () => {
             <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 text-center">
                 <SectionName>Destinations</SectionName>
                 <div className="text-center mt-4 mb-12">
-                    <h2 className="text-4xl font-extrabold text-[#00204A] mb-4">Featured Destinations</h2>
-                    <p className="text-gray-600 max-w-xl mx-auto text-lg">
+                    <h2 className="text-5xl font-bold mt-2 mb-3">Featured <span className='text-secondary'> Destinations</span></h2>
+                    <p className="text-base-content/65 max-w-xl mx-auto text-lg">
                         Discover the most loved tourist spots in Bangladesh selected by our travel community.
                     </p>
                 </div>
@@ -75,7 +75,7 @@ const TouristStorySection = () => {
                 </div>
             </section >
 
-            <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 bg-white flex flex-col md:flex-row gap-12 items-center">
+            <section className="max-w-7xl mx-auto py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12 bg-base-200 flex flex-col md:flex-row gap-12 items-center rounded-2xl">
                 {/* Left Image */}
                 <div className="w-full md:w-1/2">
                     <img
@@ -89,11 +89,9 @@ const TouristStorySection = () => {
                 <div className="w-full md:w-1/2">
                     <div className="mb-4">
                         <SectionName>Our Skills</SectionName>
-                        <h2 className="text-5xl font-extrabold text-[#00204A] leading-snug">
-                            We Offer You <span className="text-secondary">The Best Immigration</span> Service
-                        </h2>
+                        <h2 className="text-5xl text-base-content leading-normal font-bold mt-2 mb-3">We Offer You <span className='text-secondary'> The Best Immigration</span> Service</h2>
                     </div>
-                    <p className="text-gray-600 mb-8 text-base leading-relaxed">
+                    <p className="text-base-content/65 mb-8 text-base leading-relaxed">
                         Wanderix is committed to providing expert immigration and consultancy services for those
                         planning to travel, study or settle from Bangladesh. We make your global journey easier.
                     </p>
@@ -104,7 +102,7 @@ const TouristStorySection = () => {
                     <SkillBar label="Student Consultancy" percentage={78} />
 
                     <Link className="relative inline-flex items-center rounded-lg justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
-                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
                             Learn More <BsArrowUpRightCircleFill />
                         </span>

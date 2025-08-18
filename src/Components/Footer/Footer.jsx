@@ -20,16 +20,16 @@ const Footer = () => {
                         <img className='max-w-[200px]' src={FooterLogo} alt={FooterLogo} />
 
                         <div className="flex">
-                            <div className='flex items-center bg-base-100 px-2 rounded-l-sm'>
+                            <div className='flex items-center bg-white px-2 rounded-l-sm'>
                                 <IoMdMail className='mt-1 text-primary' size={20} />
                                 <input
                                     type="email"
                                     placeholder="username@site.com"
-                                    className="input px-2 max-w-[120px] input-bordered outline-0 focus:outline-0 border-none join-item text-black" />
+                                    className="input px-2 max-w-[120px] bg-white input-bordered outline-0 focus:outline-0 border-none join-item text-black" />
                             </div>
 
                             <Link className="relative inline-flex items-center rounded-r-sm justify-center px-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
-                                <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                                <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-56 group-hover:h-56"></span>
                                 <span className="absolute inset-0 w-full h-full  rounded-lg opacity-30 from-transparent via-transparent to-gray-700"></span>
                                 <span className="relative flex items-center gap-2">Subscribe <FiSend size={14} /></span>
                             </Link>
@@ -46,7 +46,7 @@ const Footer = () => {
                                         rel="noopener noreferrer"
                                         href="mailto:kazisabbir4361@gmail.com"
                                     >
-                                        kazisabbir4361@gmail.com
+                                        mdsabbirhossain9200@gmail.com
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">

@@ -81,14 +81,14 @@ const CarouselSection = () => {
                                     className="flex gap-4 md:gap-5 lg:gap-6 mb-4 md:mb-6 lg:mb-8"
                                 >
                                     <Link className="relative inline-flex items-center rounded-lg justify-center px-4 py-2 md:px-5 md:py-3 lg:px-6 lg:py-3.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
-                                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-56 group-hover:h-56"></span>
                                         <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
                                             {car.button1} <BsArrowUpRightCircleFill />
                                         </span>
                                     </Link>
 
                                     <Link className="relative inline-flex items-center rounded-lg justify-center px-4 py-2 md:px-5 md:py-3 lg:px-6 lg:py-3.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-secondary group">
-                                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-56 group-hover:h-56"></span>
                                         <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
                                             {car.button2} <BsArrowUpRightCircleFill />
                                         </span>

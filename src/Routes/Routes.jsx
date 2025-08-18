@@ -34,6 +34,7 @@ import AdminRoute from "../Context/AdminRoute/AdminRoute";
 import TouristRoute from "../Context/TouristRoute/TouristRoute";
 import CommonRoute from "../Context/CommonRoute/CommonRoute";
 import GuideRoute from "../Context/GuideRoute/GuideRoute";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: '/trips',
                 Component: Trips
+            },
+            {
+                path: '/contact',
+                Component: Contact
             },
             {
                 path: '/packagedetailspage/:id',

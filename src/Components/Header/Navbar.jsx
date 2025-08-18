@@ -75,6 +75,7 @@ const Navbar = () => {
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/aboutus"}>About Us</NavLink></li>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/community"}>Community</NavLink></li>
         <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/trips"}>Trips</NavLink></li>
+        <li className='font-semibold text-base'><NavLink className={`hover:text-primary hover:border-primary border-b-2 border-base-100/0 py-1 duration-200`} to={"/contact"}>Contact</NavLink></li>
     </>
     return (
         <section id="navbarId" className={`px-4 md:px-6 lg:px-12 bg-base-100 shadow-sm z-50 transition-all duration-500 ease-in-out sticky ${isFixed
@@ -102,7 +103,7 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <div className="space-x-2 flex justify-between items-center">
+                <div className="space-x-2 md:space-x-4 lg:space-x-6 flex justify-between items-center">
                     <label className="toggle text-base-content">
                         <input type="checkbox" onChange={handleToggle} checked={theme === "dark"} />
                         <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>

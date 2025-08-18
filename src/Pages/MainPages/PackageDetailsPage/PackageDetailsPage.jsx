@@ -10,6 +10,7 @@ import UseAxiosSecure from "../../../Hooks/UseAxiosSecure/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import USeRole from "../../../Hooks/UseRole/USeRole";
+import Container from "../../../Components/Container/Container";
 
 const PackageDetailsPage = () => {
     const { user } = useAuth()
@@ -87,130 +88,132 @@ const PackageDetailsPage = () => {
 
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10 space-y-10">
-            <div className='text-center mb-3'>
-                <SectionName>Package Details</SectionName>
-            </div>
-            {/* Gallery */}
-            <div className="max-w-6xl mx-auto px-4 py-10">
-                <h2 className="text-4xl font-bold mb-6 text-center text-[#00204A]">
-                    Gallery
-                </h2>
-                {formattedPhotos.length > 0 ? (
-                    <Gallery photos={formattedPhotos} />
-                ) : (
-                    <p className="text-center text-gray-500">No photos available</p>
-                )}
-            </div>
-
-            {/* About The Tour */}
-            <section>
-                <h2 className="text-4xl font-bold mb-4">About the Tour</h2>
-                <p className="text-base-content leading-relaxed">{packageData.about}</p>
-            </section>
-
-            {/* Tour Plan */}
-            <section>
-                <h2 className="text-4xl font-bold mb-6">Tour Plan</h2>
-                {packageData.plan.map((day, index) => (
-                    <details key={index} className="border rounded mb-4">
-                        <summary className="bg-blue-100 py-2 px-4 font-semibold cursor-pointer">
-                            Day {index + 1}: {day.title}
-                        </summary>
-                        <div className="p-4 text-base-content">{day.description}</div>
-                    </details>
-                ))}
-            </section>
-
-            {/* Tour Guides */}
-            <section>
-                <h2 className="text-4xl font-bold mb-6">Tour Guides</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {guides.map((guide) => (
-                        <div
-                            key={guide._id}
-                            className="border rounded-lg p-4 shadow hover:shadow-md transition"
-                            onClick={() => navigate(`/tour-guides/${guide._id}`)}
-                        >
-                            <img src={guide.photo} alt={guide.name} className="w-full h-40 object-cover rounded mb-3" />
-                            <h3 className="text-xl font-bold">{guide.name}</h3>
-                            <p className="text-gray-600">{guide.expertise}</p>
-                        </div>
-                    ))}
+        <Container>
+            <div className="py-12 md:py-16 lg:py-24">
+                <div className='text-center mb-3'>
+                    <SectionName>Package Details</SectionName>
                 </div>
-            </section>
+                {/* Gallery */}
+                <div className="max-w-6xl mx-auto px-4 py-10">
+                    <h2 className="text-4xl font-bold mb-6 text-center text-base-content">
+                        Gallery
+                    </h2>
+                    {formattedPhotos.length > 0 ? (
+                        <Gallery photos={formattedPhotos} />
+                    ) : (
+                        <p className="text-center text-gray-500">No photos available</p>
+                    )}
+                </div>
 
-            {/* Booking Form */}
-            <section>
-                <h2 className="text-4xl font-bold mb-6 text-center">Book this Trip</h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 max-w-xl mx-auto">
-                    <input
-                        type="text"
-                        readOnly
-                        defaultValue={packageData.title}
-                        className="input input-bordered w-full"
-                        {...register("packageName")}
-                    />
-                    <input
-                        type="text"
-                        readOnly
-                        defaultValue={user?.displayName || ""}
-                        className="input input-bordered w-full"
-                        {...register("touristName")}
-                    />
-                    <input
-                        type="email"
-                        readOnly
-                        defaultValue={user?.email || ""}
-                        className="input input-bordered w-full"
-                        {...register("touristEmail")}
-                    />
-                    <input
-                        type="text"
-                        readOnly
-                        defaultValue={user?.photoURL || ""}
-                        className="input input-bordered w-full"
-                        {...register("touristImage")}
-                    />
-                    <input
-                        type="number"
-                        readOnly
-                        defaultValue={packageData.price}
-                        className="input input-bordered w-full"
-                        {...register("price")}
-                    />
-                    <DatePicker
-                        selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date)}
-                        placeholderText="Select Tour Date"
-                        className="input input-bordered w-full"
-                    />
-                    <select {...register("guideName")} className="input input-bordered w-full">
-                        <option value="">Select Tour Guide</option>
+                {/* About The Tour */}
+                <section>
+                    <h2 className="text-4xl font-bold mb-4">About the Tour</h2>
+                    <p className="text-base-content leading-relaxed">{packageData.about}</p>
+                </section>
+
+                {/* Tour Plan */}
+                <section>
+                    <h2 className="text-4xl font-bold mb-6">Tour Plan</h2>
+                    {packageData.plan.map((day, index) => (
+                        <details key={index} className="border rounded-xl mb-4">
+                            <summary className="bg-base-200 rounded-xl text-base-content py-2 px-4 font-semibold cursor-pointer">
+                                Day {index + 1}: {day.title}
+                            </summary>
+                            <div className="p-4 text-base-content">{day.description}</div>
+                        </details>
+                    ))}
+                </section>
+
+                {/* Tour Guides */}
+                <section>
+                    <h2 className="text-4xl font-bold mb-6">Tour Guides</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {guides.map((guide) => (
-                            <option key={guide._id} value={guide.name}>
-                                {guide.name}
-                            </option>
+                            <div
+                                key={guide._id}
+                                className="rounded-lg p-4 shadow hover:shadow-md bg-base-200 transition"
+                                onClick={() => navigate(`/tour-guides/${guide._id}`)}
+                            >
+                                <img src={guide.photo} alt={guide.name} className="w-full h-40 object-cover rounded mb-3" />
+                                <h3 className="text-xl font-bold">{guide.name}</h3>
+                                <p className="text-base-content/55">{guide.expertise}</p>
+                            </div>
                         ))}
-                    </select>
-                    {/* <button type="submit" className="btn btn-primary mt-4">
+                    </div>
+                </section>
+
+                {/* Booking Form */}
+                <section>
+                    <h2 className="text-4xl font-bold mb-6 text-center mt-4">Book this Trip</h2>
+                    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 max-w-xl mx-auto">
+                        <input
+                            type="text"
+                            readOnly
+                            defaultValue={packageData.title}
+                            className="input input-bordered w-full"
+                            {...register("packageName")}
+                        />
+                        <input
+                            type="text"
+                            readOnly
+                            defaultValue={user?.displayName || ""}
+                            className="input input-bordered w-full"
+                            {...register("touristName")}
+                        />
+                        <input
+                            type="email"
+                            readOnly
+                            defaultValue={user?.email || ""}
+                            className="input input-bordered w-full"
+                            {...register("touristEmail")}
+                        />
+                        <input
+                            type="text"
+                            readOnly
+                            defaultValue={user?.photoURL || ""}
+                            className="input input-bordered w-full"
+                            {...register("touristImage")}
+                        />
+                        <input
+                            type="number"
+                            readOnly
+                            defaultValue={packageData.price}
+                            className="input input-bordered w-full"
+                            {...register("price")}
+                        />
+                        <DatePicker
+                            selected={selectedDate}
+                            onChange={(date) => setSelectedDate(date)}
+                            placeholderText="Select Tour Date"
+                            className="input input-bordered w-full"
+                        />
+                        <select {...register("guideName")} className="input input-bordered w-full">
+                            <option value="">Select Tour Guide</option>
+                            {guides.map((guide) => (
+                                <option key={guide._id} value={guide.name}>
+                                    {guide.name}
+                                </option>
+                            ))}
+                        </select>
+                        {/* <button type="submit" className="btn btn-primary mt-4">
                         Book Now
                     </button> */}
-                    <button
-                        type="submit"
-                        className="btn btn-primary mt-4"
-                        disabled={role === 'admin' || role === 'guide'}
-                    >
-                        {
-                            role === 'admin' || role === 'guide'
-                                ? 'Only tourists can book packages'
-                                : 'Book Now'
-                        }
+                        <button
+                            type="submit"
+                            className="btn btn-primary mt-4"
+                            disabled={role === 'admin' || role === 'guide'}
+                        >
+                            {
+                                role === 'admin' || role === 'guide'
+                                    ? 'Only tourists can book packages'
+                                    : 'Book Now'
+                            }
 
-                    </button>
-                </form>
-            </section>
-        </div>
+                        </button>
+                    </form>
+                </section>
+            </div>
+        </Container>
     );
 };
 

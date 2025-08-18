@@ -31,26 +31,29 @@ const TouristStory = () => {
             <div className="text-center mb-12">
                 <SectionName>Stories</SectionName>
                 <h2 className="text-5xl font-bold mt-2 mb-3">Tourist <span className='text-secondary'> Story</span></h2>
-                <p className="text-gray-600 max-w-xl mx-auto text-lg">
+                <p className="text-base-content/65 max-w-xl mx-auto text-lg">
                     Read what our explorers have experienced across beautiful tourist place in Bangladesh.
                 </p>
             </div>
 
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {stories.map((story) => (
-                    <div key={story.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
+                    <div key={story.id} className="bg-base-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
                         <img src={story.images[0]} alt={story.images[0]} className="w-full h-48 object-cover" />
                         <div className="p-5 space-y-3">
-                            <h3 className="text-xl font-bold text-gray-800">{story.title}</h3>
-                            <p className="text-sm text-gray-500">📍 {story.location}</p>
-                            <p className="text-gray-700 text-sm">{story.description}</p>
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-xl font-bold text-base-content">{story.title}</h3>
+                                <p className="text-sm text-base-content/55">📍 {story.location}</p>
+                            </div>
+                            <p className="text-base-content/70 text-sm">{story.description}</p>
                             <div className="flex items-center gap-2 text-sm text-blue-600">
                                 <FaUserCircle /> <span>{story?.email}</span>
                             </div>
                             <div>
                                 {user ? (
-                                    <FacebookShareButton url={story.url}>
-                                        <FacebookIcon size={32} round />
+                                    <FacebookShareButton className="flex items-center gap-3" url={story.url}>
+                                        Share To
+                                        <FacebookIcon size={28} round />
                                     </FacebookShareButton>
                                 ) : (
                                     <button
@@ -68,7 +71,7 @@ const TouristStory = () => {
 
             <div className="text-center mt-12">
                 <Link to={"/community"} className="relative inline-flex items-center rounded-lg justify-center px-2.5 md:px-3.5 py-1.5 md:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-primary group">
-                    <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-56 group-hover:h-56"></span>
+                    <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-56 group-hover:h-56"></span>
                     <span className="relative flex text-sm md:text-base lg:text-lg font-semibold items-center gap-2">
                         All Stories <BsArrowUpRightCircleFill />
                     </span>

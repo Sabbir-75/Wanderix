@@ -51,7 +51,7 @@ const ApplySection = () => {
           <Link className="relative inline-flex items-center rounded-md justify-center px-2 py-1.5 
             sm:px-3 sm:py-2 overflow-hidden font-mono tracking-tighter text-white 
             bg-secondary group text-xs sm:text-sm md:text-base">
-            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-base-content rounded-full group-hover:w-40 group-hover:h-40"></span>
+            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-success rounded-full group-hover:w-40 group-hover:h-40"></span>
             <span className="relative flex items-center gap-1 sm:gap-2 font-semibold">
               Apply <BsArrowUpRightCircleFill className="text-xs sm:text-sm md:text-base" />
             </span>
@@ -59,7 +59,7 @@ const ApplySection = () => {
         </div>
 
         {/* Inputs */}
-        <div className="flex items-center justify-between gap-2 sm:gap-3">
+        <div className="flex items-center justify-between gap-2 sm:gap-3 text-black">
           {/* Name */}
           <div className="w-full">
             <div className="flex items-center gap-2 px-2 py-1.5 sm:py-2 bg-white border rounded-full">
