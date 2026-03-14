@@ -1,6 +1,6 @@
 import React from "react";
 import { Cloud, Home, Lock, Server, Globe, Zap } from "lucide-react";
-import Container from "../../../../../../Quiknest/quiknest-client/src/Components/Container/Container";
+import Container from "../../../Components/Container/Container";
 import apiBanner from "../../../assets/e5ee272c-dfe1-40e5-b66b-b0a36e815254.png"; // ✅ Replace with your own image
 import { NavLink } from "react-router";
 

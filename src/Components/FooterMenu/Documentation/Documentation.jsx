@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpenText, Home, ListChecks, Code2, Plug, AlertCircle } from "lucide-react";
-import Container from "../../../../../../Quiknest/quiknest-client/src/Components/Container/Container";
+import Container from "../../../Components/Container/Container";
 import documentationBanner from "../../../assets/blog-tt-process-documentation.jpeg"; // ✅ Use your own image
 import { NavLink } from "react-router";
 

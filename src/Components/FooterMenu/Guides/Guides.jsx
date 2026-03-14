@@ -1,6 +1,6 @@
 import React from "react";
 import { Compass, Home, MapPin, Airplay, Wrench, ThumbsUp } from "lucide-react";
-import Container from "../../../../../../Quiknest/quiknest-client/src/Components/Container/Container";
+import Container from "../../../Components/Container/Container";
 import guideBanner from "../../../assets/new_storage2Fposts2FTypesOfTourGuides2_1703360225.webp"; // Replace with your own image
 import { NavLink } from "react-router";
 
